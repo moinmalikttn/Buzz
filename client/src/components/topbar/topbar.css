@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  --btn-width-100: 100px;
+}
+.body {
+  margin: 0;
+  padding: 0;
+}
+nav {
+  margin: 0;
+  padding: 0;
+}
+nav ul {
+  margin: 0;
+  padding: 8px 15px;
+  list-style: none;
+  display: flex;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+nav ul li {
+  padding: 3px;
+}
+nav ul li a {
+  display: inline-block;
+  text-decoration: none;
+}
+nav ul li #ttn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+
+nav ul li#space2 {
+  flex: 2;
+}
+nav ul li a {
+  height: 40px;
+  width: var(--btn-width-100);
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(158, 158, 158);
+  transition: 0.5s;
+}
+
+nav ul li #btn_msg,
+nav ul li #btn_profile {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: #444;
+  background: rgba(0, 0, 0, 0.068);
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+
+
+.active {
+  color: #0b84ed !important;
+}
+
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+.topbarImg{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
