@@ -6,7 +6,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
-        {/* <Favorite/> */}
+        <h2>hello wrold </h2>
       </div>
     </div>
   )
