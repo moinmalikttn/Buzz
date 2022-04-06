@@ -1,17 +1,32 @@
 import React from "react";
 import "./login.css";
 import { GoogleLogin } from "react-google-login";
+import axios from "axios"
+import { useState } from "react";
 
 
 function Login() {
+  const [authenticate,setAuthenticate]=useState(false);
 
   const responseGoogle = (response) => {
-    console.log(response);
+    
+    axios.post("http://localhost:8000/authusers",{
+      email:response.profileObj.email,
+      googleId:response.profileObj.googleId,
+      imageUrl:response.profileObj.imageUrl,
+      name:response.profileObj.name,
+    })
+    .then((data)=>console.log(data))
+    .catch((err)=>console.log(err))
+
+    if(!response.profileObj.googleId){
+      setAuthenticate(false);
+    }
   }
 
   return (
     <>
-      <div className="main">
+    {authenticate ? (<div className="main">
         <div className="login_page">
           <div className="container">
             <img className="logo" src="/assets/ttnlogo.jpg" alt="logo" />
@@ -33,7 +48,12 @@ function Login() {
             </div>
           </div>
         </div>
-      </div>
+      </div>) : (
+        <div>
+          User unauthenticate for this organization
+          </div>
+      )}
+      
     </>
   );
 }
