@@ -2,7 +2,7 @@ import "./style.css";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import PrivateRoute from "./privateRoutes/PrivateRoute";
-import LoginPrivateRoute from "./privateRoutes/LpoginPrivateRoute";
+import LoginPrivateRoute from "./privateRoutes/LoginPrivateRoute";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {

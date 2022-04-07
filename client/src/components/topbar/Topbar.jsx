@@ -2,9 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router";
 import "./topbar.css";
 
-
 function Topbar() {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
     navigate("/");
