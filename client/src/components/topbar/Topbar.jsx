@@ -52,7 +52,7 @@ function Topbar() {
               data-tooltip="Profile"
               id="btn_profile"
             >
-              <i className="fa-solid fa-arrow-left"></i>
+              {/* <i className="fa-solid fa-arrow-left"></i> */}
             </button>
           </li>
         </ul>
