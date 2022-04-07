@@ -1,5 +1,6 @@
 import React from "react";
 import "./sidebar.css";
+
 import {
   RssFeed,
   Chat,
@@ -57,28 +58,7 @@ function Sidebar() {
 
         <button className="sidebarButton">Show More</button>
         <hr className="sidebarHr" />
-        <ul className="sidebarFriendList">
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/1.jpg" alt="" />
-            <span className="sidebarFriendName">marry</span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/1.jpg" alt="" />
-            <span className="sidebarFriendName">marry</span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/1.jpg" alt="" />
-            <span className="sidebarFriendName">marry</span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/1.jpg" alt="" />
-            <span className="sidebarFriendName">marry</span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/1.jpg" alt="" />
-            <span className="sidebarFriendName">marry</span>
-          </li>
-        </ul>
+        
       </div>
     </div>
   );

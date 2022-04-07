@@ -16,7 +16,9 @@ function Login() {
       imageUrl:response.profileObj.imageUrl,
       name:response.profileObj.name,
     })
-    .then((data)=>console.log(data))
+    .then((data)=> {
+      setAuthenticate(true)
+      console.log(data)})
     .catch((err)=>console.log(err))
 
     if(!response.profileObj.googleId){

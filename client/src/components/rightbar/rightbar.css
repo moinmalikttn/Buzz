@@ -1,10 +1,26 @@
 .rightbar {
   flex: 3.5;
   margin-top: 10px;
+  overflow-y: scroll;
+  position: sticky;
+  top: 50px;
+  height: 80vh;
 }
 
 .rightbarWrapper {
   padding: 20px 20px 0 0;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: color #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(179, 179, 179);
 }
 
 .birthdayContainer {
@@ -23,14 +39,10 @@
   font-size: 15px;
 }
 
-.rightbarAd {
-  width: 100%;
-  border-radius: 10px;
-  margin: 30px 0;
-}
+
 
 .rightbarTitle {
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .rightbarFriendList {
@@ -39,38 +51,7 @@
   list-style: none;
 }
 
-.rightbarFriend{
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
 
-.rightbarProfileImgContainer{
-    margin-right: 10px;
-    position: relative;
-
-}
-.rightbarProfileImg{
-    width:40px;
-    height:40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.rightbarOnline{
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color:limegreen;
-    position: absolute;
-    top: -2px;
-    right: 0;
-    border: 2px solid white;
-}
-
-.rigthbarUsername{
-    font-weight: 500;
-}
 
 .rightbarTitle {
   font-size: 18px;
