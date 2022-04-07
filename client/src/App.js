@@ -1,5 +1,7 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
+import PrivateRoute from "./privateRoutes/PrivateRoute";
+// import LoginPrivateRoute from "./privateRoutes/LpoginPrivateRoute";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {
@@ -8,10 +10,11 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Login />} />
-          <Route exact path="/feeds" element={<Home />} />
-        
-      </Routes>
-    </div>
-    </Router >
+          <Route exact element={<PrivateRoute />}>
+            <Route exact path="/feeds" element={<Home />} />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }

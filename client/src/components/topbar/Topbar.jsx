@@ -1,9 +1,15 @@
+import React from "react";
+import { useNavigate } from "react-router";
 import "./topbar.css";
 
-import React from "react";
-// import { Link } from "react-router-dom";
 
 function Topbar() {
+  const navigate=useNavigate()
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <header>
       <nav>
@@ -22,11 +28,11 @@ function Topbar() {
 
           <li id="space2" />
           <li>
-              <img
-                src="https://pbs.twimg.com/profile_images/1505231632738881536/C1oQKyY3_400x400.jpg"
-                alt="moin malik"
-                className="topbarImg"
-              />
+            <img
+              src="https://pbs.twimg.com/profile_images/1505231632738881536/C1oQKyY3_400x400.jpg"
+              alt="moin malik"
+              className="topbarImg"
+            />
           </li>
 
           <li>
@@ -38,6 +44,16 @@ function Topbar() {
           <li>
             <button className="tooltip" data-tooltip="Profile" id="btn_profile">
               <i className="fas fa-user-cog" />
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={logout}
+              className="tooltip"
+              data-tooltip="Profile"
+              id="btn_profile"
+            >
+              <i className="fa-solid fa-arrow-left"></i>
             </button>
           </li>
         </ul>
