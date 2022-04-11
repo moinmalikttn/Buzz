@@ -9,8 +9,11 @@ function Topbar() {
     navigate("/");
   };
 
+  // calling user 
+
+
   return (
-    <header>
+    <header className="topbarContainer">
       <nav>
         <ul>
           <li>
@@ -27,6 +30,7 @@ function Topbar() {
 
           <li id="space2" />
           <li>
+            {/* user profile */}
             <img
               src="https://pbs.twimg.com/profile_images/1505231632738881536/C1oQKyY3_400x400.jpg"
               alt="moin malik"
@@ -52,7 +56,7 @@ function Topbar() {
               data-tooltip="Profile"
               id="btn_profile"
             >
-              <i className="fa-solid fa-arrow-left"></i>
+              <i className="fas fa-arrow-left"></i>
             </button>
           </li>
         </ul>

@@ -1,10 +1,8 @@
 .rightbar {
   flex: 3.5;
-  margin-top: 10px;
   overflow-y: scroll;
   position: sticky;
   top: 50px;
-  height: 80vh;
 }
 
 .rightbarWrapper {
@@ -39,8 +37,6 @@
   font-size: 15px;
 }
 
-
-
 .rightbarTitle {
   margin: 20px 0;
 }
@@ -50,8 +46,6 @@
   margin: 0;
   list-style: none;
 }
-
-
 
 .rightbarTitle {
   font-size: 18px;

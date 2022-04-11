@@ -1,12 +1,13 @@
-import React from 'react';
+import React from "react";
 import "./feed.css";
+import {Link} from "react-router-dom"
 
 function Feed() {
   return (
     <div className="feed">
-      feeds
+     <h2>Feeds</h2>
     </div>
-  )
+  );
 }
 
-export default Feed
+export default Feed;
