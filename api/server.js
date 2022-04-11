@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const authusers = require("./routes/authUser");
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 const corsOptions = {
   origin: "*",
@@ -16,6 +16,7 @@ app.use(cors(corsOptions));
 //middleware
 app.use(express.json());
 app.use("/authusers", authusers);
+
 
 //database connection
 require("./db/connection");
