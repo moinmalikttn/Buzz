@@ -8,12 +8,16 @@ require("../db/connection");
 const UserAuthModel = require("../models/userAuthModel");
 
 router.post("/", async (req, res) => {
+  const response = {
+    message: "user already exist",
+  };
   const userPresent = await UserAuthModel.findOne({ email: req.body.email });
   if (!userPresent) {
     const usersInfo = new UserAuthModel(req.body);
     const  insertUserInfo= await usersInfo.save();
     res.send(insertUserInfo);
   }
+  res.send(response);
 });
 
 router.get("/", async (req, res) => {

@@ -1,11 +1,20 @@
-import React from "react";
+import React from 'react';
+import Post from '../post/Post';
+import Share from '../share/Share';
 import "./feed.css";
-import {Link} from "react-router-dom"
+// import {Link} from "react-router-dom"
 
 function Feed() {
   return (
     <div className="feed">
-     <h2>Feeds</h2>
+      <div className="feedWrapper">
+        <Share/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        </div>
     </div>
   );
 }

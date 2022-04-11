@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
+// import axios from "axios";
 import "./closeFriend.css";
-import { AuthContext } from "../../context/AuthContext";
+// import { AuthContext } from "../../context/AuthContext";
 
 function CloseFriend({ user }) {
   // const { user: currentUser, dispatch } = useContext(AuthContext);

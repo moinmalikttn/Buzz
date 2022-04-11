@@ -11,7 +11,9 @@ export default function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={<Login />} />
+          <Route exact element={<LoginPrivateRoute />}>
+            <Route exact path="/" element={<Login />} />
+          </Route>
           <Route exact element={<PrivateRoute />}>
             <Route exact path="/feeds" element={<Home />} />
           </Route>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./rightbar.css";
 
 import Online from "../online/Online";
-import { Users } from "../../dummyData";
+// import { Users } from "../../dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";
 import axios from "axios";
 
