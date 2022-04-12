@@ -1,0 +1,40 @@
+.userProfile{
+    flex:5.5;
+    margin: 50px;
+    height: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px black;
+
+}
+.AddFriend,.visitWeb{
+    margin:10px;
+    font-size: larger;
+    background-color: rgb(94, 94, 226);
+    color:white;
+}
+
+.upper_container{
+    position: relative;
+    height: 200px;
+    background: linear-gradient(to left, #2d00f7, #ff0291);
+   
+}
+
+.img_container{
+   position: absolute;
+   top:8rem;
+   left:1rem;
+   
+}
+.img_container img{
+    border-radius: 10px;
+    
+}
+
+.lower_container{
+    position: absolute;
+    margin:25px;
+}
+
+

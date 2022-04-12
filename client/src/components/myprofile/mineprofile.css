@@ -1,0 +1,67 @@
+.mineProfile{
+    flex:5.5;
+    margin: 50px;
+    height: 690px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px black;
+
+}
+.AddFriend,.visitWeb{
+    margin:10px;
+    font-size: larger;
+    background-color: rgb(94, 94, 226);
+    color:white;
+}
+
+.upper_Container{
+    position: relative;
+    height: 200px;
+    background: linear-gradient(to left, #2d00f7, #ff0291);
+   
+}
+
+.img_Container{
+   position: absolute;
+   top:8rem;
+   left:2rem;
+   
+}
+.img_Container img{
+    border-radius: 10px;
+    
+}
+
+.lower_Container{
+    position: absolute;
+    margin-top:10px;
+    
+}
+
+
+.lower_Container .Detailed_Info .Row{
+    font-size: larger;
+    margin:30px;
+    width:40rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.FirstName,.LastName,.Designation,.MyWebsite,.City,.Birthday
+,.State,.Zip,.Gender{
+    display: flex;
+    flex-direction: column;
+    
+}
+.SimpleRow{
+    margin-top:10px;
+    display: flex;
+    
+}
+
+.Btn{
+    font-size: large;
+    margin-right:10px;
+}
+
