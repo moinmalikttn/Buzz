@@ -20,4 +20,9 @@ router.post("/", async (req, res) => {
   res.send(response);
 });
 
+router.get("/", async (req, res) => {
+  const users = await UserAuthModel.find({});
+  res.send(users);
+});
+
 module.exports = router;

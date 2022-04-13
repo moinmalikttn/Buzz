@@ -5,6 +5,7 @@ import axios from "axios";
 import Post from "../post/Post";
 import Share from "../share/Share";
 import "./feed.css";
+// import {Link} from "react-router-dom"
 
 function Feed() {
 
@@ -52,7 +53,6 @@ function Feed() {
         <button onClick={goToNext}>Next</button> */}
       </div>
     </div>
-    
   );
 }
 

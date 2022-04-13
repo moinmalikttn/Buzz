@@ -1,9 +1,6 @@
 .sidebar {
   flex: 3;
-  margin: 10px;
   height: 80vh;
-  /* overflow-y: scroll; */
-  position: sticky;
   top: 50px;
 }
 
