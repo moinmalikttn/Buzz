@@ -1,7 +1,14 @@
 import "./post.css";
+import LazyLoad from "react-lazyload";
 import { MoreVert } from "@material-ui/icons";
 
-function Post() {
+
+function Post({post}) {
+  const year=post.date.slice(0,4);
+  const month=post.date.slice(5,7);
+  const day=post.date.slice(8,10);
+  const months=["January","February","March","April","May","June","July","August","September","October","November","December"]
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -9,19 +16,20 @@ function Post() {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src="/assets/person/1.jpg"
+              src={post.userImg}
               alt="user_profile_img"
             />
-            <span className="postUsername">Moin Malik</span>
-            <span className="postDate">April 7 2022</span>
+            <span className="postUsername">{post.userName}</span>
+            <span className="postDate">{`${day} ${months[month-1]} ${year}`}</span>
           </div>
           <div className="postTopRight">
             <MoreVert/>
           </div>
         </div>
         <div className="postCenter">
-          <span className="postText">This is my first post</span>
-          <img className="postImg" src="/assets/ad.png" alt="post_img" />
+          <span className="postText">{post.desc}</span>
+          
+          <img className="postImg" src={post.imgUrl} alt="post_img" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

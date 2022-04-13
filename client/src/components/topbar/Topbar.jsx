@@ -28,7 +28,8 @@ function Topbar() {
           <li id="space2" />
           <li>
             <img
-              src="https://pbs.twimg.com/profile_images/1505231632738881536/C1oQKyY3_400x400.jpg"
+              // src="https://pbs.twimg.com/profile_images/1505231632738881536/C1oQKyY3_400x400.jpg"
+              src="/assets/person/1.jpg"
               alt="moin malik"
               className="topbarImg"
             />

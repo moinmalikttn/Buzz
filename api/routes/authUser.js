@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
   if (!userPresent) {
     const usersInfo = new UserAuthModel(req.body);
     const insertUserInfo = await usersInfo.save();
-    response = insertUserInfo;
+    localStorage.setItem("userData", req.body);
   }
   res.send(response);
 });
