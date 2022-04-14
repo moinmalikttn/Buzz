@@ -1,14 +1,35 @@
 import React from 'react'
 import {Users} from '../../dummyData'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './mineprofile.css'
 import { StoreMallDirectoryRounded } from '@material-ui/icons';
 import axios from 'axios';
 
 const Mineprofile = () => {
 
-    const name=Users[3].username;
-    const image=Users[3].profilePicture
+    let [Name,setName] = useState("");
+    let [Image,setImage] = useState("");
+    let [Email,setEmail] = useState("");
+    let getDetails = async()=>{
+      axios({
+        method:'get',
+        url:`http://localhost:8000/authusers/`,
+
+      })
+      .then((res)=>{
+        setName(res.data[0].name);
+        setImage(res.data[0].imageUrl);
+        setEmail(res.data[0].email);
+      
+      })
+      .catch((err)=>{console.log(err)});
+    }
+    useEffect(()=>{
+      getDetails();
+    },[])
+
+    const name=Name;
+    const image=Image;
     const info='Sarah Wood is co-founder and COO of video ad tec company,';
 
     let [userReg,setUserReg] = useState({
@@ -20,9 +41,10 @@ const Mineprofile = () => {
         City: "",
         State: "",
         Zip: "",
-        Gender: ""
+        Gender: "",
+       
 
-    })
+    })    
 
     
 
@@ -35,12 +57,15 @@ const Mineprofile = () => {
     let State= userReg.State;
     let Zip= userReg.Zip;
     let Gender=userReg.Gender;
+   
+    
 
     let handleChange = (e)=>{
         let name=e.target.name;
         let value=e.target.value;
 
         setUserReg({...userReg,[name]:value})
+        
 
 
     }
@@ -58,7 +83,8 @@ const Mineprofile = () => {
                 City: City,
                 State: State,
                 Zip: Zip,
-                Gender: Gender
+                Gender: Gender,
+               
                
             }
         })
@@ -72,6 +98,7 @@ const Mineprofile = () => {
     let SubmitIt = (e)=>{
         e.preventDefault();
       
+        
         postModel();
         resetAll();
     }
@@ -159,7 +186,7 @@ const Mineprofile = () => {
                               <div onChange={handleChange}>
                                 <input type="radio" value="Male" name="Gender" /> Male
                                 <input type="radio" value="Female" name="Gender" /> Female
-                                <input type="radio" value="Other" name="Gender" /> Other
+               
                             </div>
 
                              

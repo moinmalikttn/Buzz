@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./profiles.css";
 import {FaUserPlus} from "react-icons/fa"
 import {Users} from '../../dummyData'
+import axios from 'axios';
 
 function Profiles() {
-    console.log(Users);
-    const name=Users[3].username;
-    const image=Users[3].profilePicture
-    const info='Sarah Wood is co-founder and COO of video ad tec company,';
+
+    let [Name,setName] = useState("");
+    let [Image,setImage] = useState("");
+    let [Email,setEmail] = useState("");
+    let getDetails = async()=>{
+      axios({
+        method:'get',
+        url:`http://localhost:8000/authusers/`,
+
+      })
+      .then((res)=>{
+        setName(res.data[0].name);
+        setImage(res.data[0].imageUrl);
+        setEmail(res.data[0].email);
+        console.log(res.data[0]);
+      })
+      .catch((err)=>{console.log(err)});
+    }
+    useEffect(()=>{
+      getDetails();
+    },[])
+   
+    const name=Name;
+    const image=Image;
+    const info='Naveen is co-founder and COO of video ad tec company,';
+    
   return (
       <>
       <div className="userProfile">

@@ -3,11 +3,10 @@ import "./login.css";
 import { GoogleLogin } from "react-google-login";
 import axios from "axios";
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [authenticate, setAuthenticate] = useState(false);
 
   const responseGoogle = (response) => {
@@ -24,7 +23,8 @@ function Login() {
         .then((data) => {
           setAuthenticate(true);
           localStorage.setItem("userToken", response.tokenId);
-          navigate("feeds")
+          localStorage.setItem("userData", JSON.stringify(response));
+          navigate("feeds");
           console.log(data);
         })
         .catch((err) => console.log(err));
