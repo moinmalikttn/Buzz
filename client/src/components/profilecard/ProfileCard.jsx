@@ -14,7 +14,7 @@ function ProfileCard({ user }) {
       <div className="lower-container">
         <h3>{user.name}</h3>
         <h4>Welcome to Newers Family</h4>
-        <Link to={`/feeds/userprofile/${user.name}`} type="button">
+        <Link to={`/feeds/myprofile/${user.name}`} type="button">
           <button className="profbutton">Visit Profile</button>
         </Link>
       </div>

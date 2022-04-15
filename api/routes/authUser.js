@@ -16,13 +16,25 @@ router.post("/", async (req, res) => {
     const usersInfo = new UserAuthModel(req.body);
     const insertUserInfo = await usersInfo.save();
     localStorage.setItem("userData", req.body);
+    
   }
   res.send(response);
+  
 });
 
 router.get("/", async (req, res) => {
   const users = await UserAuthModel.find({});
   res.send(users);
+  
 });
+
+router.get('/:name',async(req,res)=>{
+ 
+  const users = await UserAuthModel.find({name:req.params.name})
+  res.send(users);
+  
+})
+
+
 
 module.exports = router;

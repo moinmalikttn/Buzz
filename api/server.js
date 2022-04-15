@@ -27,7 +27,8 @@ app.use(
 );
 
 app.use("/authusers", authusers);
-app.use("/feeds/userprofile",userData);
+app.use("/feeds/userprofile",authusers);
+app.use("/feeds/myprofile",userData);
 app.use("/postupload", postUpload);
 const fileUpload = require("express-fileupload");
 

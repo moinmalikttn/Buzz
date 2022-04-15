@@ -3,9 +3,10 @@ import Mineprofile from '../../components/myprofile/Mineprofile'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Rightbar from '../../components/rightbar/Rightbar'
 import Topbar from '../../components/topbar/Topbar'
-
+import { useParams } from 'react-router-dom'
 const MyProfile = () => {
-
+   let {name} = useParams();
+   console.log(name);
 
   return (
     <>
@@ -13,7 +14,7 @@ const MyProfile = () => {
     <Topbar />
     <div className="profileContainer">
       
-      <Mineprofile />
+      <Mineprofile userName={name}/>
       <Rightbar />
     </div>
     </>

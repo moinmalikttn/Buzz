@@ -5,22 +5,24 @@ import './mineprofile.css'
 import { StoreMallDirectoryRounded } from '@material-ui/icons';
 import axios from 'axios';
 
-const Mineprofile = () => {
 
+const Mineprofile = ({userName}) => {
+    
+   
     let [Name,setName] = useState("");
     let [Image,setImage] = useState("");
     let [Email,setEmail] = useState("");
     let getDetails = async()=>{
       axios({
         method:'get',
-        url:`http://localhost:8000/authusers/`,
+        url:`http://localhost:8000/feeds/userprofile/${userName}`,
 
       })
       .then((res)=>{
         setName(res.data[0].name);
         setImage(res.data[0].imageUrl);
         setEmail(res.data[0].email);
-      
+        console.log(res);
       })
       .catch((err)=>{console.log(err)});
     }
@@ -28,6 +30,13 @@ const Mineprofile = () => {
       getDetails();
     },[])
 
+    let arr=Name.split(' ');
+    let firstName = arr[0];
+    let lastName = arr[1];
+     console.log(typeof(firstName));
+
+    console.log(firstName);
+    console.log(lastName);
     const name=Name;
     const image=Image;
     const info='Sarah Wood is co-founder and COO of video ad tec company,';
@@ -48,8 +57,8 @@ const Mineprofile = () => {
 
     
 
-    let FirstName=userReg.FirstName;
-    let LastName=userReg.LastName;
+    let FirstName=firstName;
+    let LastName=lastName;
     let Designation=userReg.Designation;
     let MyWebsite = userReg.MyWebsite;
     let Birthday = userReg.Birthday.toString();
@@ -73,7 +82,7 @@ const Mineprofile = () => {
     let postModel = async()=>{
         axios({
             method:'post',
-            url:`http://localhost:8000/feeds/userprofile/${name}`,
+            url:`http://localhost:8000/feeds/myprofile/${userName}`,
             data:{
                 FirstName:FirstName,
                 LastName:LastName,
@@ -107,8 +116,8 @@ const Mineprofile = () => {
 
     let resetAll = ()=>{
         setUserReg({
-            FirstName:"",
-            LastName:"",
+            FirstName: "",
+            LastName: "",
             Designation:"",
             MyWebsite:"",
             Birthday:"",
@@ -138,8 +147,8 @@ const Mineprofile = () => {
                               <input type='text' 
                               name="FirstName" 
                               id="FirstName"
-                              placeholder='First name' 
-                              value={FirstName} 
+                              placeholder="FirstName" 
+                              value={firstName} 
                               onChange={handleChange} />
                           </div>
 
@@ -148,8 +157,8 @@ const Mineprofile = () => {
                               <input type='text' 
                               name="LastName" 
                               id="LastName"
-                              placeholder='Last name' 
-                              value={LastName} 
+                              placeholder="LastName"
+                              value={lastName} 
                               onChange={handleChange}/>
                           </div>
 
@@ -188,23 +197,6 @@ const Mineprofile = () => {
                                 <input type="radio" value="Female" name="Gender" /> Female
                
                             </div>
-
-                             
-                              
-
-                              {/* <div className='SimpleRow'>
-                              <div className='Male'>
-                              <input type='radio' id='male' name='gender' 
-                              value="Male" />
-                              <label>Male</label>
-                              </div>
-                              
-                              <div className='Female'>
-                              <input type='radio' id='Female' name='gender'
-                              value="Female" />
-                              <label>Female</label>
-                              </div>
-                              </div> */}
                          
                           </div>
 

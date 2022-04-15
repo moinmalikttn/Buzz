@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import {Link} from 'react-router-dom'
 // import axios from "axios";
 import "./closeFriend.css";
 // import { AuthContext } from "../../context/AuthContext";
@@ -31,7 +32,7 @@ function CloseFriend({ user }) {
     <li className="sidebarFriend">
       <img className="sidebarFriendImg" src={user.imageUrl} alt="" />
       <span className="sidebarFriendName">
-        {user.name}
+      <Link to={`/feeds/userprofile/${user.name}`} >{user.name}</Link>
         <span>
           {/* <button className="profbutton" onClick={handleClick}>
             {followed ? "Unfollow" : "Follow"}

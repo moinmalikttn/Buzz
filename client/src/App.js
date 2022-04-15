@@ -16,10 +16,10 @@ export default function App() {
           </Route>
           <Route exact element={<PrivateRoute />}>
             <Route exact path="/feeds" element={<Home />} />
-            <Route exact path ="/feeds/userprofile/:id" element={<MyProfile />} />
+             <Route exact path ="/feeds/myprofile/:name" element={<MyProfile />} />
           </Route>
 
-          <Route exact path="/feeds/userprofile" element={<Profile />} />
+          <Route exact path="/feeds/userprofile/:name" element={<Profile />} />
           
           
         </Routes>

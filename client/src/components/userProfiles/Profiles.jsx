@@ -4,7 +4,8 @@ import {FaUserPlus} from "react-icons/fa"
 import {Users} from '../../dummyData'
 import axios from 'axios';
 
-function Profiles() {
+function Profiles({userName}) {
+    console.log('username hai',userName);
 
     let [Name,setName] = useState("");
     let [Image,setImage] = useState("");
@@ -12,7 +13,7 @@ function Profiles() {
     let getDetails = async()=>{
       axios({
         method:'get',
-        url:`http://localhost:8000/authusers/`,
+        url:`http://localhost:8000/feeds/userProfile/${userName}`,
 
       })
       .then((res)=>{
