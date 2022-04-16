@@ -54,14 +54,20 @@
   cursor: pointer;
 }
 
+input[type="file"] {
+  display: none;
+}
+
 .shareIcon {
   font-size: 18px;
   margin-right: 3px;
+  cursor: pointer;
 }
 
 .shareOptionText {
   font-size: 14px;
   font-weight: 500;
+  margin-top: -5px;
 }
 
 .shareButton {
