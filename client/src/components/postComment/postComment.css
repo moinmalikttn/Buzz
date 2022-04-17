@@ -5,3 +5,16 @@
 .CommentButton{
     font-size: 20px;
 }
+.showComment{
+    border: 1px solid;
+    padding:10px;
+    margin:10px;
+    display: flex;
+    justify-content: space-between;
+}
+.UserContainer{
+    display: flex;
+}
+.Row{
+    padding:5px;
+}

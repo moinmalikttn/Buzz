@@ -12,9 +12,14 @@ function Post({post}) {
   const months=["January","February","March","April","May","June","July","August","September","October","November","December"]
 
   let [flag,setFlag] = useState(false);
+  let [noComments,setnoComments] = useState(0);
 
   let showComments = ()=>{
     setFlag(!flag);
+  }
+
+  let commentCallback = (value)=>{
+      setnoComments(value);
   }
 
   return (
@@ -48,10 +53,10 @@ function Post({post}) {
             <span className="postLikeCounter">50</span>
           </div>
           <div className="postBottomRight">
-            <span className="postCommentText" onClick={showComments}> 5 comments</span>
+            <span className="postCommentText" onClick={showComments}> {noComments} comments</span>
           </div>
         </div>
-        {flag&&<PostComment post={post} />}
+        {flag&&<PostComment post={post} callBack={commentCallback} />}
         
       </div>
     </div>

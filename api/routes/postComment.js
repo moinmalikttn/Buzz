@@ -6,10 +6,14 @@ require("../db/connection");
 
 const postCommentModel = require('../models/postCommentModel');
 
-router.post('/:id',async(req,res)=>{
+router.get('/:postId',async(req,res)=>{
+    const data = await postCommentModel.findOne({id:req.params.postId});
+    res.send(data);
+})
+router.post('/:postId',async(req,res)=>{
     let result;
-    console.log(req.params.id);
-    const data = await postCommentModel.findOne({id:req.params.id});
+
+    const data = await postCommentModel.findOne({id:req.params.postId});
     if(data){
         data.comments.push(req.body.comments[0]);
         result = await data.save();
@@ -22,13 +26,28 @@ router.post('/:id',async(req,res)=>{
     res.send(result);
 
 })
-
-router.put('/',async(req,res)=>{
-
+/*
+router.put('/:postId/:commentId',async(req,res)=>{
+    let result;
+    let data = await postCommentModel.findOne({id:req.params.postId});
+    if(data){
+        data.comments.id(req.params.commentId).comment=req.body.comment;
+        result = await data.save();
+    }
+    res.send(result);
 })
+*/
 
-router.delete('/',async(req,res)=>{
-
+router.delete('/:postId/:commentId',async(req,res)=>{
+    let result;
+   
+    let data = await postCommentModel.findOne({id:req.params.postId});
+    if(data){
+        data.comments.id(req.params.commentId).remove();
+        result = await data.save();
+    }
+    res.send(result);
+    
 })
 
 module.exports = router;
