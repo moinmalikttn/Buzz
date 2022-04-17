@@ -6,7 +6,7 @@ import Topbar from '../../components/topbar/Topbar'
 import { useParams } from 'react-router-dom'
 const MyProfile = () => {
    let {name} = useParams();
-   console.log(name);
+
 
   return (
     <>

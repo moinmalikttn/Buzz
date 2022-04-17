@@ -10,7 +10,7 @@ function Online({ user }) {
         <img className="rightbarProfileImg" src={user.imageUrl} alt="" />
         <span className="rightbarOnline"></span>
       </div>
-      <span className="rigthbarUsername" > <Link to={`/feeds/userprofile/${user.name}`} >{user.name}</Link></span>
+      <span className="rigthbarUsername" > <Link to={`/feeds/userprofile/${user.name}`} id="UserName">{user.name}</Link></span>
     </li>
   );
 }

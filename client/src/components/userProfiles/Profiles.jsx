@@ -5,7 +5,7 @@ import {Users} from '../../dummyData'
 import axios from 'axios';
 
 function Profiles({userName}) {
-    console.log('username hai',userName);
+    
 
     let [Name,setName] = useState("");
     let [Image,setImage] = useState("");
@@ -20,17 +20,17 @@ function Profiles({userName}) {
         setName(res.data[0].name);
         setImage(res.data[0].imageUrl);
         setEmail(res.data[0].email);
-        console.log(res.data[0]);
+        
       })
       .catch((err)=>{console.log(err)});
     }
-    useEffect(()=>{
+ 
       getDetails();
-    },[])
+  
    
     const name=Name;
     const image=Image;
-    const info='Naveen is co-founder and COO of video ad tec company,';
+    const info=`${name} is co-founder and COO of video ad tec company,`;
     
   return (
       <>

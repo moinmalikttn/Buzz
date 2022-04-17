@@ -32,7 +32,7 @@ function CloseFriend({ user }) {
     <li className="sidebarFriend">
       <img className="sidebarFriendImg" src={user.imageUrl} alt="" />
       <span className="sidebarFriendName">
-      <Link to={`/feeds/userprofile/${user.name}`} >{user.name}</Link>
+      <Link to={`/feeds/userprofile/${user.name}`} id="UserName" >{user.name}</Link>
         <span>
           {/* <button className="profbutton" onClick={handleClick}>
             {followed ? "Unfollow" : "Follow"}
