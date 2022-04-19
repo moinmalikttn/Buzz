@@ -52,10 +52,6 @@ router.put("/:id/unfollow", async (req, res) => {
     }
 });
 
-// get followers 
-
-
-
 
 // get followers ...
 
@@ -63,7 +59,7 @@ router.put("/:id/unfollow", async (req, res) => {
 router.get("/friends/:userId", async (req, res) => {
     try {
         const user = await User.findById(req.params.userId);
-        // const sir = await User.findOne({email:"shivam.tyagi@tothenew.com"})
+        const sir = await User.findOne({_id:"6255b7b7d5679b547df7b756"})
         // console.log("sir data = ", sir)
         // console.log(user);
         // console.log("user followings =",user.followings);
@@ -76,7 +72,7 @@ router.get("/friends/:userId", async (req, res) => {
                 return await User.findById(friendId);
             })
         );
-        console.log(friends);
+        // console.log(friends);
     } catch (err) {
         res.status(500).json(err);
     }
