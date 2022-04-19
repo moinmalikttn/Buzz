@@ -11,6 +11,8 @@ function Topbar() {
 
   // calling user 
 
+  const user = JSON.parse(localStorage.getItem("userData"))
+
 
   return (
     <header className="topbarContainer">
@@ -33,7 +35,7 @@ function Topbar() {
             {/* user profile */}
             <img
               // src="https://pbs.twimg.com/profile_images/1505231632738881536/C1oQKyY3_400x400.jpg"
-              src="/assets/person/1.jpg"
+              src={user.profileObj.imageUrl}
               alt="moin malik"
               className="topbarImg"
             />

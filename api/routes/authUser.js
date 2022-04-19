@@ -13,6 +13,7 @@ router.post("/", async (req, res) => {
   };
   const userPresent = await UserAuthModel.findOne({ email: req.body.email });
   if (!userPresent) {
+    // const id = mongoose.Types.ObjectId();
     const usersInfo = new UserAuthModel(req.body);
     const insertUserInfo = await usersInfo.save();
     localStorage.setItem("userData", req.body);
@@ -21,8 +22,15 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const users = await UserAuthModel.find({});
+  const { email } = req.query;
+  let filterquery = {};
+  if (email) {
+    filterquery.email = email
+  }
+  const users = await UserAuthModel.find(filterquery);
   res.send(users);
 });
+
+
 
 module.exports = router;

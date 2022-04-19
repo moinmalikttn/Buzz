@@ -2,19 +2,22 @@ import React from "react";
 import "./profilecard.css";
 import { Link } from "react-router-dom";
 
-function ProfileCard({ user }) {
+function ProfileCard() {
+
+  const user = JSON.parse(localStorage.getItem("userData"));
+  console.log(user);
   return (
     <div className="card">
       <div className="upper-container">
         <div className="img-container">
-          <img src={user.imageUrl} alt={user.name} />
+          <img src={user.profileObj.imageUrl} alt={user.name} />
         </div>
       </div>
 
       <div className="lower-container">
-        <h3>{user.name}</h3>
+        <h3>{user.profileObj.name}</h3>
         <h4>Welcome to Newers Family</h4>
-        <Link to={`/feeds/userprofile/${user.name}`} type="button">
+        <Link to={`/feeds/userprofile/${user.profileObj.name}`} type="button">
           <button className="profbutton">Visit Profile</button>
         </Link>
       </div>

@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const authusers = require("./routes/authUser");
 const postUpload = require("./routes/postUpload");
+const users = require("./routes/users");
 const port = process.env.PORT || 5000;
 
 const corsOptions = {
@@ -26,6 +27,7 @@ app.use(
 
 app.use("/authusers", authusers);
 app.use("/postupload", postUpload);
+app.use("/users", users);
 const fileUpload = require("express-fileupload");
 
 
