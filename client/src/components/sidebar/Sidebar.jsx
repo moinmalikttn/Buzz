@@ -1,7 +1,7 @@
-import React, { useState , useEffect} from "react";
+import React from "react";
 import "./sidebar.css";
 import ProfileCard from "../profilecard/ProfileCard";
-import axios from "axios";
+
 
 import {
   RssFeed,
@@ -16,30 +16,15 @@ import {
 } from "@material-ui/icons";
 
 function Sidebar() {
-
-  const [users, setUsers] = useState([]);
-
-  const getUsers = () => {
-    axios
-      .get("http://localhost:8000/authusers")
-      .then((res) => setUsers(res.data))
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    getUsers();
-  }, []);
-
+  
 
   return (
+  
     <div className="sidebar">
       <div className="sidebarWrapper">
         <ul className="sidebarList">
-         {users.map((u) => {
-           return (
-            <ProfileCard user = {u}/>
-           )
-         })}
+        <ProfileCard />;
+
           <li className="sidebarListItem">
             <RssFeed className="sidebarIcon" />
             <span className="sidebarbarListItemText">Feed</span>
