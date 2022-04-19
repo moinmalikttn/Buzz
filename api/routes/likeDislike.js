@@ -19,14 +19,14 @@ router.post('/:postId/:id',async(req,res)=>{
     if(data){
         if(req.params.id==0){
             
-           let value = await likeDislikeModel.find({'heart.email':req.body.email})
-           let value1 = await likeDislikeModel.find({'like.email':req.body.email})
+           let value = await likeDislikeModel.find({ $and:[{'id':req.params.postId},{'heart.email':req.body.email}]})
+           let value1 = await likeDislikeModel.find({ $and:[{'id':req.params.postId},{'like.email':req.body.email}]})
            console.log(`value is ${value.length}`);
            console.log(`value1 is ${value1.length}`);
 
                 if(value!=0){
                     console.log('i am in');
-                    await likeDislikeModel.updateOne({'heart.email':req.body.email},
+                    await likeDislikeModel.updateOne({ $and:[{'id':req.params.postId},{'heart.email':req.body.email}]},
                     {$pull:{'heart':{'email':req.body.email}}})
                     
 
@@ -34,7 +34,7 @@ router.post('/:postId/:id',async(req,res)=>{
                     
                 }
                 else if(value1!=0){
-                    await likeDislikeModel.updateOne({'like.email':req.body.email},
+                    await likeDislikeModel.updateOne({ $and:[{'id':req.params.postId},{'like.email':req.body.email}]},
                     {$pull:{'like':{'email':req.body.email}}})
 
                     data.heart.push({"email":req.body.email});
@@ -55,14 +55,14 @@ router.post('/:postId/:id',async(req,res)=>{
         }
         else if(req.params.id==1){//like section
 
-            let value = await likeDislikeModel.find({'like.email':req.body.email})
-           let value1 = await likeDislikeModel.find({'heart.email':req.body.email})
+            let value = await likeDislikeModel.find({ $and:[{'id':req.params.postId},{'like.email':req.body.email}]})
+           let value1 = await likeDislikeModel.find({ $and:[{'id':req.params.postId},{'heart.email':req.body.email}]})
            console.log(`value is ${value.length}`);
            console.log(`value1 is ${value1.length}`);
 
                 if(value!=0){
                     console.log('i am in like secton');
-                    await likeDislikeModel.updateOne({'like.email':req.body.email},
+                    await likeDislikeModel.updateOne({ $and:[{'id':req.params.postId},{'like.email':req.body.email}]},
                     {$pull:{'like':{'email':req.body.email}}})
                     
 
@@ -70,7 +70,7 @@ router.post('/:postId/:id',async(req,res)=>{
                     
                 }
                 else if(value1!=0){
-                    await likeDislikeModel.updateOne({'heart.email':req.body.email},
+                    await likeDislikeModel.updateOne({ $and:[{'id':req.params.postId},{'heart.email':req.body.email}]},
                     {$pull:{'heart':{'email':req.body.email}}})
 
                     data.like.push({"email":req.body.email});

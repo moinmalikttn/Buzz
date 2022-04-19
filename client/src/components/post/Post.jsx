@@ -2,11 +2,15 @@ import "./post.css";
 import LazyLoad from "react-lazyload";
 import { MoreVert } from "@material-ui/icons";
 import PostComment from "../postComment/PostComment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 
 function Post({post}) {
+
+  useEffect(()=>{
+      fetchlikeDislike();
+  },[])
   const year=post.date.slice(0,4);
   const month=post.date.slice(5,7);
   const day=post.date.slice(8,10);
@@ -36,36 +40,29 @@ function Post({post}) {
     console.log('i am fetchlikedislike');
     axios.get(`http://localhost:8000/postupload/likeDislike/${post._id}`)
     .then((res)=>{
-      console.log(res);
+      setLike(res.data.like.length);
+      setHeart(res.data.heart.length);
     })
     .catch((err)=>{
       console.log(err);
     })
   }
 
-  let likeIt = ()=>{
-    axios.post(`http://localhost:8000/postupload/likeDislike/${post._id}/1`,{
+  let likeIt = async()=>{
+    let {data}= await axios.post(`http://localhost:8000/postupload/likeDislike/${post._id}/1`,{
+      id:post._id,
       email:myProfile.email
     })
-    .then((res)=>{
-      console.log(res);
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
+    
     fetchlikeDislike();
   }
   
-  let heartIt = ()=>{
-    axios.post(`http://localhost:8000/postupload/likeDislike/${post._id}/0`,{
+  let heartIt = async()=>{
+    let {data}=await axios.post(`http://localhost:8000/postupload/likeDislike/${post._id}/0`,{
+      id:post._id,
       email:myProfile.email
     })
-    .then((res)=>{
-      console.log(res);
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
+    
     fetchlikeDislike();
   }
 
