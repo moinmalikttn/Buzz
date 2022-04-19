@@ -3,6 +3,7 @@ import LazyLoad from "react-lazyload";
 import { MoreVert } from "@material-ui/icons";
 import PostComment from "../postComment/PostComment";
 import { useState } from "react";
+import axios from "axios";
 
 
 function Post({post}) {
@@ -13,6 +14,15 @@ function Post({post}) {
 
   let [flag,setFlag] = useState(false);
   let [noComments,setnoComments] = useState(0);
+  
+
+  //getting data from localstorage
+  let myProfile = JSON.parse(localStorage.getItem('userData'));
+  myProfile = myProfile.profileObj;
+
+
+  let [like,setLike] = useState(0);
+  let [heart,setHeart] = useState(0);
 
   let showComments = ()=>{
     setFlag(!flag);
@@ -20,6 +30,43 @@ function Post({post}) {
 
   let commentCallback = (value)=>{
       setnoComments(value);
+  }
+
+  let fetchlikeDislike = async()=>{
+    console.log('i am fetchlikedislike');
+    axios.get(`http://localhost:8000/postupload/likeDislike/${post._id}`)
+    .then((res)=>{
+      console.log(res);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
+
+  let likeIt = ()=>{
+    axios.post(`http://localhost:8000/postupload/likeDislike/${post._id}/1`,{
+      email:myProfile.email
+    })
+    .then((res)=>{
+      console.log(res);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+    fetchlikeDislike();
+  }
+  
+  let heartIt = ()=>{
+    axios.post(`http://localhost:8000/postupload/likeDislike/${post._id}/0`,{
+      email:myProfile.email
+    })
+    .then((res)=>{
+      console.log(res);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+    fetchlikeDislike();
   }
 
   return (
@@ -46,17 +93,20 @@ function Post({post}) {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img className="likeIcon" src="assets/like.png" alt="like_img" />
-            <span className="postLikeCounter">100</span>
+            <img className="likeIcon" src="assets/like.png" alt="like_img" onClick={likeIt} />
+            <span className="postLikeCounter" >{like}</span>
 
-            <img className="likeIcon" src="assets/heart.png" alt="love_img" />
-            <span className="postLikeCounter">50</span>
+            <img className="likeIcon" src="assets/heart.png" alt="love_img" onClick={heartIt} />
+            <span className="postLikeCounter" >{heart}</span>
           </div>
           <div className="postBottomRight">
             <span className="postCommentText" onClick={showComments}> {noComments} comments</span>
           </div>
         </div>
-        {flag&&<PostComment post={post} callBack={commentCallback} />}
+        <div className="commentBox">
+        <PostComment post={post} callBack={commentCallback} flag={flag} />
+        </div>
+        
         
       </div>
     </div>

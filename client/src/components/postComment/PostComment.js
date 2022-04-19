@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react'
 import './postComment.css'
 import {AiTwotoneDelete,AiTwotoneEdit} from "react-icons/ai";
 
-const PostComment = ({post,callBack}) => {
+const PostComment = ({post,callBack,flag}) => {
 
     let [comment,setComment] = useState("");
     let [readComment,setReadComment] = useState([]);
+    let [reRender,setreRender] = useState(false);
     callBack(readComment.length);
     
     console.log(readComment.length);
@@ -24,7 +25,7 @@ const PostComment = ({post,callBack}) => {
 
     useEffect(()=>{
       FetchComments();
-    },[comment]);
+    },[reRender]);
 
 
     //getting data from localstorage
@@ -41,7 +42,7 @@ const PostComment = ({post,callBack}) => {
 
     //posting comment
     let addComment = async()=>{
-        axios.post(`http://localhost:8000/postupload/comment/${post._id}`,{
+        await axios.post(`http://localhost:8000/postupload/comment/${post._id}`,{
           id:post._id,
          comments:[{
          author:myProfile.email,
@@ -55,8 +56,8 @@ const PostComment = ({post,callBack}) => {
         .catch((err)=>{
           console.log(err); 
         })
-
         setComment("");
+        setreRender(!reRender);
         
     }
 
@@ -75,19 +76,22 @@ const PostComment = ({post,callBack}) => {
     let deleteComment = async(value)=>{
       if(value[1].name!=myProfile.name)return ;
 
-      axios.delete(`http://localhost:8000/postupload/comment/${post._id}/${value[1]._id}`)
+      await axios.delete(`http://localhost:8000/postupload/comment/${post._id}/${value[1]._id}`)
       .then((res)=>{
         console.log(res);
       })
       .catch((err)=>{
         console.log(err);
       })
-      setComment("");
+      setreRender(!reRender);
+      
     }
     
 
 
   return (
+    <>
+    {flag&&
     <div className='Postcommet'>
         <div className='AddComment'>
             <input type='text'
@@ -116,6 +120,8 @@ const PostComment = ({post,callBack}) => {
         </div>
       
     </div>
+    }
+    </>
   )
 }
 
