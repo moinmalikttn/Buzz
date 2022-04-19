@@ -8,6 +8,9 @@ const userData = require('./routes/userData');
 const port = process.env.PORT || 8000;
 const postUpload = require("./routes/postUpload");
 
+c
+const users = require("./routes/users");
+
 
 const corsOptions = {
   origin: "*",
@@ -30,6 +33,7 @@ app.use("/authusers", authusers);
 app.use("/feeds/userprofile",authusers);
 app.use("/feeds/myprofile",userData);
 app.use("/postupload", postUpload);
+app.use("/users", users);
 const fileUpload = require("express-fileupload");
 
 

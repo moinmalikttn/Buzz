@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 const Mineprofile = ({userName}) => {
-    
+    console.log(userName);
    
     let [Name,setName] = useState("");
     let [Image,setImage] = useState("");

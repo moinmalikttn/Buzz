@@ -1,5 +1,6 @@
 import "./post.css";
 import LazyLoad from "react-lazyload";
+// import LazyLoad from "react-lazyload";
 import { MoreVert } from "@material-ui/icons";
 
 
