@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 const postUpload = require("./routes/postUpload");
 const postComment = require('./routes/postComment');
 const likeDislike = require('./routes/likeDislike');
+const reportPost = require('./routes/reportPost');
 
 
 const corsOptions = {
@@ -33,6 +34,7 @@ app.use("/feeds/userprofile",userData);
 app.use("/postupload", postUpload);
 app.use("/postupload/comment",postComment);
 app.use("/postupload/likeDislike",likeDislike);
+app.use("/postupload/report",reportPost);
 const fileUpload = require("express-fileupload");
 
 
