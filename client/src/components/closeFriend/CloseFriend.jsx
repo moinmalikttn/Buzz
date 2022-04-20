@@ -46,7 +46,7 @@ function CloseFriend({ user , me:currentUser}) {
   return (
     <li className="sidebarFriend">
       <img className="sidebarFriendImg" src={user.imageUrl} alt="" />
-      <span className="sidebarFriendName"> <Link to={`/feeds/userprofile/${user.name}`} id="UserName" >{user.name}</Link></span>
+      <span className="sidebarFriendName"><Link to={`/feeds/userprofile/${user.name}`} id="UserName" >{user.name}</Link></span>
       <span className= "btnRight">
         {user.name !== currentUser.name && (
           <button className="rightbarFollowButton" onClick={handleClick}>

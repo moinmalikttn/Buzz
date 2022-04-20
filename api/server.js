@@ -5,11 +5,16 @@ const bodyParser = require("body-parser");
 const app = express();
 const authusers = require("./routes/authUser");
 const userData = require('./routes/userData');
-const port = process.env.PORT || 8000;
+
 const postUpload = require("./routes/postUpload");
 
 
 const users = require("./routes/users");
+const port = process.env.PORT || 5000;
+
+
+const postComment = require('./routes/postComment');
+const likeDislike = require('./routes/likeDislike');
 
 
 const corsOptions = {
@@ -33,7 +38,12 @@ app.use("/authusers", authusers);
 app.use("/feeds/userprofile",authusers);
 app.use("/feeds/myprofile",userData);
 app.use("/postupload", postUpload);
+
 app.use("/users", users);
+
+
+app.use("/postupload/comment",postComment);
+app.use("/postupload/likeDislike",likeDislike);
 const fileUpload = require("express-fileupload");
 
 

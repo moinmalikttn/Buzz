@@ -17,9 +17,10 @@ function Profiles({userName}) {
 
       })
       .then((res)=>{
+        if(res.data.length>0){
         setName(res.data[0].name);
         setImage(res.data[0].imageUrl);
-        setEmail(res.data[0].email);
+        setEmail(res.data[0].email);}
         
       })
       .catch((err)=>{console.log(err)});
@@ -27,7 +28,7 @@ function Profiles({userName}) {
  
       getDetails();
   
-   
+     console.log('i am below');
     const name=Name;
     const image=Image;
     const info=`${name} is co-founder and COO of video ad tec company,`;
