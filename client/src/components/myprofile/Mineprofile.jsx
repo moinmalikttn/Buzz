@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 const Mineprofile = ({userName}) => {
-    
+    console.log(userName);
    
     let [Name,setName] = useState("");
     let [Image,setImage] = useState("");
@@ -153,7 +153,7 @@ const Mineprofile = ({userName}) => {
                           </div>
 
                           <div className='LastName'>
-                              <lavel>Last Name</lavel>
+                              <label>Last Name</label>
                               <input type='text' 
                               name="LastName" 
                               id="LastName"
@@ -204,8 +204,7 @@ const Mineprofile = ({userName}) => {
                               <label>Birthday</label>
                               <input type='date' 
                               name="Birthday" 
-                              id="Birthday"
-                              placeholder='MM/DD/YYYY' 
+                              id="Birthday" 
                               value={Birthday}
                               onChange={handleChange} />
                           </div>
@@ -233,7 +232,11 @@ const Mineprofile = ({userName}) => {
                               onChange={handleChange} />
                           </div>
 
-                          <div className='Zip'>
+                          
+
+                      </div>
+                      <div className='Row'>
+                      <div className='Zip'>
                           <label>Zip</label>
                               <input type='text'
                                name="Zip"
@@ -242,7 +245,6 @@ const Mineprofile = ({userName}) => {
                               value={Zip}
                               onChange={handleChange} />
                           </div>
-
                       </div>
                       
                       <div className='Row'>

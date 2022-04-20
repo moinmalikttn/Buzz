@@ -3,6 +3,7 @@ import "./online.css";
 import {Link} from 'react-router-dom'
 
 function Online({ user }) {
+  console.log(user);
   
   return (
     <li className="rightbarFriend">
@@ -16,3 +17,4 @@ function Online({ user }) {
 }
 
 export default Online;
+                                           
