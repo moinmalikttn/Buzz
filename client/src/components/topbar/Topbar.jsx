@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { Search } from "@material-ui/icons";
+
 import "./topbar.css";
 
 function Topbar() {
@@ -9,10 +11,9 @@ function Topbar() {
     navigate("/");
   };
 
-  // calling user 
+  // calling user
 
-  const user = JSON.parse(localStorage.getItem("userData"))
-
+  const user = JSON.parse(localStorage.getItem("userData"));
 
   return (
     <header className="topbarContainer">
@@ -27,6 +28,16 @@ function Topbar() {
               />
             </a>
           </li>
+
+          <div className="topbarCenter">
+            <div className="searchbar">
+              <Search className="searchIcon" />
+              <input
+                placeholder="Search for friend, post or video"
+                className="searchInput"
+              />
+            </div>
+          </div>
 
           {/* // right side navbar compoenents */}
 

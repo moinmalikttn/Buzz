@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const {ObjectId} = mongoose.Schema.Types;
+const { ObjectId } = mongoose.Schema.Types;
 
 const userAuthSchema = new mongoose.Schema({
-  id:{
-    type:String
+  id: {
+    type: String
   },
   email: {
     type: String,
@@ -17,14 +17,10 @@ const userAuthSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-  followers: {
-    type: Array,
-    default: []
-  },
-  followings: {
-    type: Array,
-    default: []
-  }
+  followers: [{ type: ObjectId, ref: "userAuthModel" }],
+  followings: [{ type: ObjectId, ref: "userAuthModel" }],
+
+
 },
   { timestamps: true }
 );
