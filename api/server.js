@@ -37,7 +37,7 @@ app.use(
 
 app.use("/authusers", authusers);
 app.use("/feeds/userprofile",authusers);
-app.use("/feeds/myprofile",userData);
+app.use("/feeds/myprofile",authusers);
 app.use("/postupload", postUpload);
 
 app.use("/users", users);

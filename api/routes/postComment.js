@@ -8,7 +8,7 @@ const postCommentModel = require('../models/postCommentModel');
 
 router.get('/:postId',async(req,res)=>{
     const data = await postCommentModel.findOne({id:req.params.postId});
-    res.send(data);
+    res.status(200).send(data);
 })
 router.post('/:postId',async(req,res)=>{
     let result;
@@ -23,7 +23,7 @@ router.post('/:postId',async(req,res)=>{
         result = await data.save();
     }
     
-    res.send(result);
+    res.status(200).send(result);
 
 })
 /*
@@ -46,7 +46,7 @@ router.delete('/:postId/:commentId',async(req,res)=>{
         data.comments.id(req.params.commentId).remove();
         result = await data.save();
     }
-    res.send(result);
+    res.status(200).send(result);
     
 })
 

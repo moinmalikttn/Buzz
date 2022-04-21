@@ -24,6 +24,43 @@ const userAuthSchema = new mongoose.Schema({
   followings: {
     type: Array,
     default: []
+  },
+  FirstName: {
+    type:String,
+    default:''
+  },
+  LastName: {
+    type:String,
+    default:''
+  },
+  Designation: {
+    type:String,
+    default:''
+  },
+  MyWebsite:{
+    type:String,
+    default:''
+  },
+  Gender:{
+    type:String,
+    default:''
+  },
+  Birthday:{
+    type:String,
+    default:''
+  },
+  City:{
+    type:String,
+    default:''
+  },
+  State:{
+    type:String,
+    default:''
+  },
+  Zip:{
+    type:Number,
+    
+
   }
 },
   { timestamps: true }
