@@ -2,27 +2,27 @@ export const Users = [
   {
     id: 1,
     profilePicture: "/assets/person/1.jpg",
-    username: "Safak Kocaoglu",
+    name: "Safak Kocaoglu",
   },
   {
     id: 2,
     profilePicture: "/assets/person/2.jpg",
-    username: "Janell Shrum",
+    name: "Janell Shrum",
   },
   {
     id: 3,
     profilePicture: "/assets/person/3.jpg",
-    username: "Alex Durden",
+    name: "Alex Durden",
   },
   {
     id: 4,
     profilePicture: "/assets/person/4.jpg",
-    username: "Dora Hawks",
+    name: "Dora Hawks",
   },
   {
     id: 5,
     profilePicture: "/assets/person/5.jpg",
-    username: "Thomas Holden",
+    name: "Thomas Holden",
   },
  
 ];

@@ -30,3 +30,7 @@
   font-weight: 500;
   cursor: pointer;
 }
+#UserName{
+    color:black;
+    text-decoration:none;
+}

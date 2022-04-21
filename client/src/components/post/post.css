@@ -77,3 +77,12 @@
   cursor: pointer;
   font-size: 15px;
 }
+.commentBox{
+  margin-top: 10px;
+}
+
+.RepoPost{
+  
+  width: 25px;
+  height: 30px;
+}

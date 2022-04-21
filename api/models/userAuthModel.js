@@ -19,8 +19,43 @@ const userAuthSchema = new mongoose.Schema({
   },
   followers: [{ type: ObjectId, ref: "userAuthModel" }],
   followings: [{ type: ObjectId, ref: "userAuthModel" }],
+  FirstName: {
+    type:String,
+    default:''
+  },
+  LastName: {
+    type:String,
+    default:''
+  },
+  Designation: {
+    type:String,
+    default:''
+  },
+  MyWebsite:{
+    type:String,
+    default:''
+  },
+  Gender:{
+    type:String,
+    default:''
+  },
+  Birthday:{
+    type:String,
+    default:''
+  },
+  City:{
+    type:String,
+    default:''
+  },
+  State:{
+    type:String,
+    default:''
+  },
+  Zip:{
+    type:Number,
+    
 
-
+  }
 },
   { timestamps: true }
 );

@@ -30,3 +30,7 @@
 .rigthbarUsername{
     font-weight: 500;
 }
+#UserName{
+    text-decoration: none;
+    color:black;
+}
