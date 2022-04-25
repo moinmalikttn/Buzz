@@ -35,19 +35,6 @@ export default function Rightbar() {
 
   const me = users.filter((user) => user.email === currentUser.email)[0];
 
-  // const [toggle, setToggle] = useState(true);
-
-  // useEffect(() => {
-  //   // getUsers();
-  //   if(toggle) 
-  //   {
-  //     console.log("toggle api called");
-  //     getUsers()
-  //     setToggle(false)
-  //   }
-
-  // }, [toggle]);
-
   const getUsers = () => {
     axios
       .get("http://localhost:8000/authusers")

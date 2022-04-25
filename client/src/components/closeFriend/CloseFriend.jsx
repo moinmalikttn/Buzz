@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./closeFriend.css";
 import { Add, Remove } from "@material-ui/icons";
-import { useContext, useEffect } from "react";
+// import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 console.log("auth context =", AuthContext);
 
-function CloseFriend({ user, me: currentUser}) {
+function CloseFriend({ user, me: currentUser }) {
   // const {user:currentUser} = useContext(AuthContext)
   // console.log("current user is = ", currentUser);
   // console.log("user hai ye=",user)

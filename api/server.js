@@ -66,3 +66,7 @@ const PostModel = require("./models/postUploadModel");
 app.listen(port, () => {
   console.log("server listen...");
 });
+
+
+// socket io chat app 
+

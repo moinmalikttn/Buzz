@@ -8,19 +8,17 @@
   margin: 0;
   padding: 0;
 }
-.topbarContainer{
-  position:sticky;
-  top:0;
-  z-index:999;
-  background-color:white;
+.topbarContainer {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white;
 }
 
 nav {
   margin: 0;
   padding: 0;
-  
 }
-
 
 nav ul {
   margin: 0;
@@ -45,7 +43,6 @@ nav ul li #ttn {
   align-items: center;
   font-size: 2rem;
 }
-
 
 nav ul li#space2 {
   flex: 2;
@@ -78,32 +75,30 @@ nav ul li #btn_profile {
   margin-left: 20px;
 }
 
-
-
 .active {
   color: #0b84ed !important;
 }
-
 
 .tooltip:hover::after {
   opacity: 1;
 }
 
-.topbarImg{
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
+.topbarImg {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 .topbarCenter {
-  flex: 4;
+  flex: 3;
   margin:auto;
   margin-left:400px;
   border: 2px solid #8e00b9;
   border-radius: 30px;
-  
+  display: flex;
+  justify-content:center;
 }
 
 .searchbar {
@@ -127,4 +122,21 @@ nav ul li #btn_profile {
 
 .searchInput:focus {
   outline: none;
+}
+
+
+/* adding seach user data list */
+
+
+.sidebarFriend {
+  display: flex;
+  align-items: center;
+}
+
+.sidebarFriendImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }

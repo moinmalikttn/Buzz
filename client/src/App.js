@@ -5,7 +5,7 @@ import Login from "./pages/login/Login";
 import PrivateRoute from "./privateRoutes/PrivateRoute";
 import LoginPrivateRoute from "./privateRoutes/LoginPrivateRoute";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import ChatApp from "./pages/ChatApp/ChatApp"
 export default function App() {
   return (
     <Router>
@@ -20,6 +20,7 @@ export default function App() {
           </Route>
 
           <Route exact path="/feeds/userprofile/:name" element={<Profile />} />
+          <Route exact path="/chatApp" element = {<ChatApp/>} />
           
           
         </Routes>

@@ -62,7 +62,7 @@ router.get("/friends/:userId", async (req, res) => {
     // const sir = await User.findOne({_id:"6255b7b7d5679b547df7b756"})
 
     // console.log("sir data = ", sir)
-    console.log(user);
+    // console.log(user);
     // console.log("user followings =",user.followings);
     // console.log("user id fetching",)
 
@@ -88,6 +88,15 @@ router.get("/:userId", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+// search user by name
+
+router.get("/authusers/:name", async (req, res) => {
+  const regex = new RegExp(req.params.name, "i");
+  User.find({ name: regex }).then((result) => {
+    res.status(200).json(result);
+  });
 });
 
 module.exports = router;
