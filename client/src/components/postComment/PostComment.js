@@ -8,6 +8,7 @@ const PostComment = ({post,callBack,flag}) => {
     let [comment,setComment] = useState("");
     let [readComment,setReadComment] = useState([]);
     let [reRender,setreRender] = useState(false);
+    let [fntSize,setfntSize] = useState("large");
     callBack(readComment.length);
     
     console.log(readComment.length);
@@ -41,7 +42,11 @@ const PostComment = ({post,callBack,flag}) => {
     }
 
     //posting comment
-    let addComment = async()=>{
+    let addComment = async(e)=>{
+      if(e.key!=='Enter'){
+        console.log('Other key is pressed');
+        return ;
+      }
         await axios.post(`http://localhost:8000/postupload/comment/${post._id}`,{
           id:post._id,
          comments:[{
@@ -92,11 +97,12 @@ const PostComment = ({post,callBack,flag}) => {
   return (
     <>
     {flag&&
-    <div className='Postcommet'>
+    <div className='Postcomment'>
         <div className='AddComment'>
+            <img src={myProfile.imageUrl} class='commentImage'/>
             <input type='text'
-            className='InputComment' value={comment} onChange={changeComment}/>
-            <button type='button' className='CommentButton' onClick={addComment}>Add</button>
+            className='InputComment' placeholder="  Write a comment..." value={comment} onChange={changeComment} onKeyDown={addComment}/>
+           
         </div>
         
         <div className='ReadComment'>
@@ -110,9 +116,12 @@ const PostComment = ({post,callBack,flag}) => {
              </div>
              </div>
              
-             <div>
+             <div  >
                {/*<AiTwotoneEdit onClick={()=>editComment(value)}/>*/}
-               <AiTwotoneDelete onClick={()=>{deleteComment(value)}} /> 
+               <AiTwotoneDelete onClick={()=>{deleteComment(value)}} 
+                onMouseEnter={()=>setfntSize('x-large')}
+                onMouseLeave={()=>setfntSize('large')} 
+                style={{'fontSize':`${fntSize}`}} /> 
 
                </div>
              </div>)}
