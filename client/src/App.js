@@ -5,7 +5,7 @@ import Login from "./pages/login/Login";
 import PrivateRoute from "./privateRoutes/PrivateRoute";
 import LoginPrivateRoute from "./privateRoutes/LoginPrivateRoute";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ChatApp from "./pages/ChatApp/ChatApp"
+import ChatApp from "./pages/chatApp/ChatApp"
 export default function App() {
   return (
     <Router>
