@@ -8,7 +8,7 @@ const PostComment = ({post,callBack,flag}) => {
     let [comment,setComment] = useState("");
     let [readComment,setReadComment] = useState([]);
     let [reRender,setreRender] = useState(false);
-    let [fntSize,setfntSize] = useState("large");
+    
     callBack(readComment.length);
     
     console.log(readComment.length);
@@ -119,9 +119,9 @@ const PostComment = ({post,callBack,flag}) => {
              <div  >
                {/*<AiTwotoneEdit onClick={()=>editComment(value)}/>*/}
                <AiTwotoneDelete onClick={()=>{deleteComment(value)}} 
-                onMouseEnter={()=>setfntSize('x-large')}
-                onMouseLeave={()=>setfntSize('large')} 
-                style={{'fontSize':`${fntSize}`}} /> 
+                onMouseEnter={(e)=>e.target.style.fontSize='x-large'}
+                onMouseLeave={(e)=>e.target.style.fontSize='large'} 
+                style={{'fontSize':'large'}} /> 
 
                </div>
              </div>)}
