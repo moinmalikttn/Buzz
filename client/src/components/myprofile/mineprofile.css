@@ -81,3 +81,13 @@ label{
 #Birthday{
     width: 15rem;
 }
+.FileUpload{
+    cursor: pointer;
+    position: absolute;
+    top:4.5rem;
+    left:5rem;
+    padding:1px;
+    border:1px solid blue;
+    border-radius: 20px;
+    font-size:xx-large;
+}

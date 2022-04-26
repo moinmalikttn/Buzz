@@ -4,6 +4,7 @@ import { useState,useEffect } from 'react';
 import './mineprofile.css'
 import { StoreMallDirectoryRounded } from '@material-ui/icons';
 import axios from 'axios';
+import { MdFileUpload } from "react-icons/md";
 
 
 const Mineprofile = ({userName}) => {
@@ -12,6 +13,7 @@ const Mineprofile = ({userName}) => {
     let [Name,setName] = useState("");
     let [Image,setImage] = useState("");
     let [Email,setEmail] = useState("");
+    let [file,setFile] = useState(null);
     let getDetails = async()=>{
       axios({
         method:'get',
@@ -136,7 +138,24 @@ const Mineprofile = ({userName}) => {
           <div className='img_Container'>
             <img src={image} alt={name} width="100px"
               height="100px"  />
+              <input
+                  type="file"
+                  id="file"
+                  name="file"
+                  
+                  onChange={(e) => {
+                      console.log(e.target.files[0]);
+                    if (e.target.files.length > 0) {
+                      setFile(e.target.files[0]);
+                    }
+                  }}
+                />
+                <label htmlFor="file" className='FileUpload'>
+                  < MdFileUpload />
+                </label>
+                
            </div>
+           
         </div>
         <div className='lower_Container'>
           <h1 style={{margin:"30px"}}>{name}</h1>
