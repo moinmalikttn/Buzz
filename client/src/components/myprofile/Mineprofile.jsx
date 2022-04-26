@@ -13,7 +13,7 @@ const Mineprofile = ({userName}) => {
     let [Name,setName] = useState("");
     let [Image,setImage] = useState("");
     let [Email,setEmail] = useState("");
-    let [file,setFile] = useState(null);
+    let [file,setFile] = useState("");
     let getDetails = async()=>{
       axios({
         method:'get',
@@ -30,6 +30,7 @@ const Mineprofile = ({userName}) => {
     }
     useEffect(()=>{
       getDetails();
+      
     },[])
 
     let arr=Name.split(' ');
@@ -131,6 +132,38 @@ const Mineprofile = ({userName}) => {
         })
     }
 
+    let handleImage = (e)=>{
+     
+        console.log(file,'i am here');
+        if(file==="")return ;
+        
+        console.log('handleImage is running');
+        const formData = new FormData();
+        formData.append("photo",file);
+
+        const config = {
+            headers: {
+              "content-type": "multipart/form-data",
+            },
+          };
+
+        const url = `http://localhost:8000/authusers/${name}`;
+        axios
+           .put(url,formData,config)
+           .then((res)=>{
+               console.log(res);
+           })
+           .catch((err)=>{
+               console.log(err);
+           })
+           setFile("");
+        
+
+    }
+    console.log(file);
+
+    
+
   return (
     <>
       <div className="mineProfile">
@@ -144,17 +177,25 @@ const Mineprofile = ({userName}) => {
                   name="file"
                   
                   onChange={(e) => {
-                      console.log(e.target.files[0]);
+                      
                     if (e.target.files.length > 0) {
                       setFile(e.target.files[0]);
+                      
                     }
                   }}
+
+                  
                 />
                 <label htmlFor="file" className='FileUpload'>
                   < MdFileUpload />
-                </label>
+                </label>                
                 
            </div>
+           <div className='ImageBtn'>
+           <button type='submit' 
+                 onClick={handleImage}>Upload</button>
+           </div>
+           
            
         </div>
         <div className='lower_Container'>

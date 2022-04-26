@@ -91,3 +91,10 @@ label{
     border-radius: 20px;
     font-size:xx-large;
 }
+
+.ImageBtn{
+   position: absolute;
+   /*
+   bottom:-2rem;
+   right:24rem;*/
+}
