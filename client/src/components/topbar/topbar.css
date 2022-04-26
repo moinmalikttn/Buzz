@@ -92,7 +92,7 @@ nav ul li #btn_profile {
 }
 
 .topbarCenter {
-  flex: 3;
+  /* flex: 3; */
   margin:auto;
   margin-left:400px;
   border: 2px solid #8e00b9;
@@ -140,3 +140,8 @@ nav ul li #btn_profile {
   object-fit: cover;
   margin-right: 10px;
 }
+
+/* .srchResult{
+  width: 100%;
+  order:2;
+} */

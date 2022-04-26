@@ -17,6 +17,10 @@ const postComment = require('./routes/postComment');
 const likeDislike = require('./routes/likeDislike');
 const reportPost = require('./routes/reportPost');
 
+// chat app router 
+
+const chatApp = require("./routes/chatApp");
+
 
 const corsOptions = {
   origin: "*",
@@ -41,6 +45,7 @@ app.use("/feeds/myprofile",authusers);
 app.use("/postupload", postUpload);
 
 app.use("/users", users);
+app.use(chatApp);
 
 
 app.use("/postupload/comment",postComment);
@@ -68,5 +73,26 @@ app.listen(port, () => {
 });
 
 
-// socket io chat app 
+// socket io chat app srever 
+
+const socketIo = require("socket.io");
+const http = require("http");
+
+const server = http.createServer(app);
+
+const io = socketIo(server);
+
+// building socket connections 
+
+io.on("connection", (socket) => {
+  console.log("we have a New connection...");
+
+  socket.on("disconnect", () => {
+    console.log("User Had Left !!!.")
+  })
+})
+
+server.listen(8080, () => {
+  console.log("chat server up and running at 8080")
+})
 

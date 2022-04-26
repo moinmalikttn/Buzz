@@ -32,7 +32,8 @@ function Topbar() {
   console.log("buzz users are =", buzzUsers);
 
   const handleSubmit = async (e) => {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13)
+    {
       console.log("enter");
       console.log(userName);
       await axios
@@ -65,7 +66,7 @@ function Topbar() {
               <Search className="searchIcon" />
 
               <input
-                placeholder="Search for friend"
+                placeholder="Search for friends"
                 className="searchInput"
                 type="text"
                 // value={userName}
@@ -74,7 +75,8 @@ function Topbar() {
               />
             </div>
           </div>
-          <div>
+          {/* search result  */}
+          <div className = "srchResult">
             {buzzUsers.map((user) => {
               return (
                 <li className="sidebarFriend">
