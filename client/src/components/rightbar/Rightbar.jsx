@@ -92,7 +92,6 @@ export default function Rightbar() {
             </Link>
           ))}
         </div>
-
         <hr/> */}
 
         {/* online friends  */}
