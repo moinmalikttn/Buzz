@@ -115,7 +115,9 @@ function Post({post}) {
             <span className="postDate">{`${day} ${months[month-1]} ${year}`}</span>
           </div>
           <div className="postTopRight">
-            <GoReport onClick={reportPost} className='RepoPost' style={{'color':`${color}`}}/>
+            <GoReport onClick={reportPost}  style={{'color':`${color}`,'fontSize':'x-large'}} onMouseEnter={(e)=>e.target.style.fontSize='xx-large'}
+                onMouseLeave={(e)=>e.target.style.fontSize='x-large'} 
+                />
             <MoreVert/>
           </div>
         </div>
