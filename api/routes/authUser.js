@@ -1,5 +1,17 @@
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+
+const uploadImage = multer({ dest: "uploadImages/" });
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+  secure: true,
+});
 
 //database connection
 require("../db/connection");
@@ -67,6 +79,21 @@ router.post('/:name',async(req,res)=>{
   }
 })
 
+router.put('/:name',uploadImage.single("photo"),async(req,res)=>{
+  const file = req.file;
+  console.log(file);
+
+  cloudinary.uploader.upload(file.path,async(err,result)=>{
+    console.log(result);
+    let url = result.url;
+    const user = await UserAuthModel.findOne({name:req.params.name});
+     if(user){
+      user.imageUrl= url;
+      let resul= await user.save();
+      res.send(resul);
+     }
+  })   
+})
 
 
 module.exports = router;
