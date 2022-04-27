@@ -99,6 +99,7 @@ nav ul li #btn_profile {
   border-radius: 30px;
   display: flex;
   justify-content:center;
+  position:relative;
 }
 
 .searchbar {
@@ -141,7 +142,13 @@ nav ul li #btn_profile {
   margin-right: 10px;
 }
 
-/* .srchResult{
+.srchResult{
+  position:absolute;
+  left:0;
+  top:35px;
   width: 100%;
-  order:2;
-} */
+  background:white;
+  /* border: 2px solid #8e00b9; */
+  /* border-radius:20px;
+  box-shadow: 2px 2px  2px 2px #888888; */
+}

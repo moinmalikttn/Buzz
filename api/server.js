@@ -19,7 +19,10 @@ const reportPost = require('./routes/reportPost');
 
 // chat app router 
 
-const chatApp = require("./routes/chatApp");
+const conversation = require('./routes/conversations');
+const message = require('./routes/messages');
+
+
 
 
 const corsOptions = {
@@ -40,17 +43,19 @@ app.use(
 );
 
 app.use("/authusers", authusers);
-app.use("/feeds/userprofile",authusers);
-app.use("/feeds/myprofile",authusers);
+app.use("/feeds/userprofile", authusers);
+app.use("/feeds/myprofile", authusers);
 app.use("/postupload", postUpload);
 
 app.use("/users", users);
-app.use(chatApp);
+
+app.use("/conversations", conversation);
+app.use("/messages", message);
 
 
-app.use("/postupload/comment",postComment);
-app.use("/postupload/likeDislike",likeDislike);
-app.use("/postupload/report",reportPost);
+app.use("/postupload/comment", postComment);
+app.use("/postupload/likeDislike", likeDislike);
+app.use("/postupload/report", reportPost);
 const fileUpload = require("express-fileupload");
 
 
@@ -73,26 +78,26 @@ app.listen(port, () => {
 });
 
 
-// socket io chat app srever 
+// // socket io chat app srever 
 
-const socketIo = require("socket.io");
-const http = require("http");
+// const socketIo = require("socket.io");
+// const http = require("http");
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
-const io = socketIo(server);
+// const io = socketIo(server);
 
-// building socket connections 
+// // building socket connections 
 
-io.on("connection", (socket) => {
-  console.log("we have a New connection...");
+// io.on("connection", (socket) => {
+//   console.log("we have a New connection...");
 
-  socket.on("disconnect", () => {
-    console.log("User Had Left !!!.")
-  })
-})
+//   socket.on("disconnect", () => {
+//     console.log("User Had Left !!!.")
+//   })
+// })
 
-server.listen(8080, () => {
-  console.log("chat server up and running at 8080")
-})
+// server.listen(8080, () => {
+//   console.log("chat server up and running at 8080")
+// })
 

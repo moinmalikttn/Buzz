@@ -17,7 +17,7 @@ function Topbar() {
   // chat application
 
   const chatButton = () => {
-    navigate("/chatApp");
+    navigate("/messenger");
   };
 
   // calling user
@@ -71,12 +71,11 @@ function Topbar() {
                 type="text"
                 // value={userName}
                 onChange={(e) => setUserName(e.target.value)}
-                onKeyDown={(e) => handleSubmit(e)}
+                onKeyUp={(e) => handleSubmit(e)}
               />
             </div>
-          </div>
-          {/* search result  */}
-          <div className = "srchResult">
+
+            <div className = "srchResult">
             {buzzUsers.map((user) => {
               return (
                 <li className="sidebarFriend">
@@ -90,6 +89,12 @@ function Topbar() {
               );
             })}
           </div>
+            
+          </div>
+
+          
+          {/* search result  */}
+          
 
           {/* // right side navbar compoenents */}
 
