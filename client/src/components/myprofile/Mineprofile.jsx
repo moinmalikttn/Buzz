@@ -152,6 +152,8 @@ const Mineprofile = ({userName}) => {
            .put(url,formData,config)
            .then((res)=>{
                console.log(res);
+               alert('Image uploaded');
+               window.location.reload();
            })
            .catch((err)=>{
                console.log(err);
@@ -187,16 +189,10 @@ const Mineprofile = ({userName}) => {
                   
                 />
                 <label htmlFor="file" className='FileUpload'>
-                  < MdFileUpload />
+                  < MdFileUpload onMouseLeave={handleImage}/>
                 </label>                
                 
-           </div>
-           <div className='ImageBtn'>
-           <button type='submit' 
-                 onClick={handleImage}>Upload</button>
-           </div>
-           
-           
+           </div> 
         </div>
         <div className='lower_Container'>
           <h1 style={{margin:"30px"}}>{name}</h1>
