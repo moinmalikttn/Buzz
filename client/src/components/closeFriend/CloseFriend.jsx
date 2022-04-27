@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import {Link} from 'react-router-dom'
+// import axios from "axios";
+
 import axios from "axios";
 import "./closeFriend.css";
 import { Add, Remove } from "@material-ui/icons";
