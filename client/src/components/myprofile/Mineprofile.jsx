@@ -28,10 +28,18 @@ const Mineprofile = ({userName}) => {
       })
       .catch((err)=>{console.log(err)});
     }
+
+    let setLocalStorage = ()=>{
+        
+        const user = JSON.parse(localStorage.getItem("userData"))
+        user.profileObj.imageUrl = Image;
+        localStorage.setItem('userData',JSON.stringify(user));
+    }
     useEffect(()=>{
       getDetails();
       
     },[])
+    setLocalStorage();
 
     let arr=Name.split(' ');
     let firstName = arr[0];
