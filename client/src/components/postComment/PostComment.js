@@ -107,6 +107,7 @@ const PostComment = ({post,callBack,flag}) => {
         
         <div className='ReadComment'>
            {readComment.map((value)=><div className='showComment'>
+             
              <div className="UserContainer">
              <div className='Row'>
              <h3>{value[1].name}</h3>
@@ -115,8 +116,8 @@ const PostComment = ({post,callBack,flag}) => {
              {value[1].comment}
              </div>
              </div>
-             
-             <div  >
+          
+             <div className='CommentVox'>
                {/*<AiTwotoneEdit onClick={()=>editComment(value)}/>*/}
                <AiTwotoneDelete onClick={()=>{deleteComment(value)}} 
                 onMouseEnter={(e)=>e.target.style.fontSize='x-large'}
@@ -125,7 +126,7 @@ const PostComment = ({post,callBack,flag}) => {
 
                </div>
              </div>)}
-          
+              
         </div>
       
     </div>

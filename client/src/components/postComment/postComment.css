@@ -35,4 +35,9 @@
 .Postcomment{
     margin-top: 2rem;
 }
-
+.CommentVox{
+    display: none;
+}
+.showComment:hover>.CommentVox{
+    display: block;
+}
