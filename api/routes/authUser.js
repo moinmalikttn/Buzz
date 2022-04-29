@@ -18,6 +18,7 @@ require("../db/connection");
 
 //userAuthModel
 const UserAuthModel = require("../models/userAuthModel");
+const PostModel = require('../models/postUploadModel');
 
 router.post("/", async (req, res) => {
   const response = {
@@ -61,6 +62,13 @@ router.put('/:name',uploadImage.single("photo"),async(req,res)=>{
     console.log(result);
     let url = result.url;
     const user = await UserAuthModel.findOne({name:req.params.name});
+    const data = await PostModel.updateMany({userName:req.params.name},{
+      
+        $set:{
+          'userImg':url       
+        }
+      
+    });
      if(user){
       user.imageUrl= url;
       let resul= await user.save();
