@@ -8,6 +8,7 @@ const PostComment = ({post,callBack,flag}) => {
     let [comment,setComment] = useState("");
     let [readComment,setReadComment] = useState([]);
     let [reRender,setreRender] = useState(false);
+    
     callBack(readComment.length);
     
     console.log(readComment.length);
@@ -41,7 +42,11 @@ const PostComment = ({post,callBack,flag}) => {
     }
 
     //posting comment
-    let addComment = async()=>{
+    let addComment = async(e)=>{
+      if(e.key!=='Enter'){
+        console.log('Other key is pressed');
+        return ;
+      }
         await axios.post(`http://localhost:8000/postupload/comment/${post._id}`,{
           id:post._id,
          comments:[{
@@ -92,15 +97,17 @@ const PostComment = ({post,callBack,flag}) => {
   return (
     <>
     {flag&&
-    <div className='Postcommet'>
+    <div className='Postcomment'>
         <div className='AddComment'>
+            <img src={myProfile.imageUrl} class='commentImage'/>
             <input type='text'
-            className='InputComment' value={comment} onChange={changeComment}/>
-            <button type='button' className='CommentButton' onClick={addComment}>Add</button>
+            className='InputComment' placeholder="  Write a comment..." value={comment} onChange={changeComment} onKeyDown={addComment}/>
+           
         </div>
         
         <div className='ReadComment'>
            {readComment.map((value)=><div className='showComment'>
+             
              <div className="UserContainer">
              <div className='Row'>
              <h3>{value[1].name}</h3>
@@ -109,14 +116,17 @@ const PostComment = ({post,callBack,flag}) => {
              {value[1].comment}
              </div>
              </div>
-             
-             <div>
+          
+             <div className='CommentVox'>
                {/*<AiTwotoneEdit onClick={()=>editComment(value)}/>*/}
-               <AiTwotoneDelete onClick={()=>{deleteComment(value)}} /> 
+               <AiTwotoneDelete onClick={()=>{deleteComment(value)}} 
+                onMouseEnter={(e)=>e.target.style.fontSize='x-large'}
+                onMouseLeave={(e)=>e.target.style.fontSize='large'} 
+                style={{'fontSize':'large'}} /> 
 
                </div>
              </div>)}
-          
+              
         </div>
       
     </div>

@@ -5,8 +5,7 @@ import Login from "./pages/login/Login";
 import PrivateRoute from "./privateRoutes/PrivateRoute";
 import LoginPrivateRoute from "./privateRoutes/LoginPrivateRoute";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-
+import Messenger from "./pages/messenger/Messenger";
 export default function App() {
   return (
     <Router>
@@ -22,6 +21,7 @@ export default function App() {
           </Route>
 
           <Route exact path="/feeds/userprofile/:name" element={<Profile />} />
+          <Route exact path="/messenger" element = {<Messenger/>} />
           
         
         </Routes>

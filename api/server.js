@@ -17,6 +17,14 @@ const port = process.env.PORT || 5000;
 
 const postComment = require('./routes/postComment');
 const likeDislike = require('./routes/likeDislike');
+const reportPost = require('./routes/reportPost');
+
+// chat app router 
+
+const conversation = require('./routes/conversations');
+const message = require('./routes/messages');
+
+
 
 
 const corsOptions = {
@@ -37,15 +45,19 @@ app.use(
 );
 
 app.use("/authusers", authusers);
-app.use("/feeds/userprofile",authusers);
-app.use("/feeds/myprofile",userData);
+app.use("/feeds/userprofile", authusers);
+app.use("/feeds/myprofile", authusers);
 app.use("/postupload", postUpload);
 
 app.use("/users", users);
 
+app.use("/conversations", conversation);
+app.use("/messages", message);
 
-app.use("/postupload/comment",postComment);
-app.use("/postupload/likeDislike",likeDislike);
+
+app.use("/postupload/comment", postComment);
+app.use("/postupload/likeDislike", likeDislike);
+app.use("/postupload/report", reportPost);
 const fileUpload = require("express-fileupload");
 
 

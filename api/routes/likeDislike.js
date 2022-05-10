@@ -30,7 +30,7 @@ router.post('/:postId/:id',async(req,res)=>{
                     {$pull:{'heart':{'email':req.body.email}}})
                     
 
-                    res.send('succesfull');
+                    res.status(200).send('succesfull');
                     
                 }
                 else if(value1!=0){
@@ -41,12 +41,12 @@ router.post('/:postId/:id',async(req,res)=>{
                     let result = await data.save();
                     
 
-                    res.send('successful value1');
+                    res.status(200).send('successful value1');
                 }
                 else {
                     data.heart.push({"email":req.body.email});
                     let result = await data.save();
-                    res.send(result);
+                    res.status(200).send(result);
                 }
 
                 
@@ -66,7 +66,7 @@ router.post('/:postId/:id',async(req,res)=>{
                     {$pull:{'like':{'email':req.body.email}}})
                     
 
-                    res.send('succesfull pulling');
+                    res.status(200).send('succesfull pulling');
                     
                 }
                 else if(value1!=0){
@@ -77,12 +77,12 @@ router.post('/:postId/:id',async(req,res)=>{
                     let result = await data.save();
                     
 
-                    res.send('successful value1');
+                    res.status(200).send('successful value1');
                 }
                 else {
                     data.like.push({"email":req.body.email});
                     let result = await data.save();
-                    res.send(result);
+                    res.status(200).send(result);
                 }
 
         }
@@ -94,13 +94,13 @@ router.post('/:postId/:id',async(req,res)=>{
             let data = await likeDislikeModel(req.body);
             data.like.push({"email":req.body.email});
             let result = await data.save();
-            res.send(result);
+            res.status(200).send(result);
         }
         else if(req.params.id==0){
             let data = await likeDislikeModel(req.body);
             data.heart.push({"email":req.body.email});
             let result = await data.save();
-            res.send(result);
+            res.status(200).send(result);
 
         }
         

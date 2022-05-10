@@ -10,7 +10,10 @@ import {Link} from 'react-router-dom'
 import axios from "axios";
 import "./closeFriend.css";
 import { Add, Remove } from "@material-ui/icons";
+// import { useContext, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
+console.log("auth context =", AuthContext);
 
 // import { AuthContext } from "../../context/AuthContext";
 
@@ -32,7 +35,8 @@ function CloseFriend({ user , me:currentUser}) {
   //console.log("user id =", user._id)
   
   const [followed, setFollowed] = useState(
-    currentUser.following?.length && currentUser.following.includes(user?.id)
+    currentUser.followings?.length &&
+      currentUser.followings.filter((corr) => corr === user.id)
   );
   //console.log("follower user is =",followed);
 
@@ -40,16 +44,15 @@ function CloseFriend({ user , me:currentUser}) {
     console.log(followed);
     try {
       if (followed) {
-        await axios.put(`http://localhost:8000/users/${user._id}/unfollow`, 
-        {
+        await axios.put(`http://localhost:8000/users/${user._id}/unfollow`, {
           userId: currentUser._id,
         });
-        
+        // dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
-        await axios.put(`http://localhost:8000/users/${user._id}/follow`, 
-        {
+        await axios.put(`http://localhost:8000/users/${user._id}/follow`, {
           userId: currentUser._id,
         });
+        // dispatch({ type: "FOLLOW", payload: user._id });
       }
       setFollowed(!followed);
     } catch (err) {
@@ -69,7 +72,6 @@ function CloseFriend({ user , me:currentUser}) {
           </button>
         )}
       </span>
-      
     </li>
   );
 }

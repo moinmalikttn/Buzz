@@ -8,15 +8,13 @@ import CloseFriend from "../closeFriend/CloseFriend";
 import axios from "axios";
 
 export default function Rightbar() {
-  
-  const { profileObj: currentUser } = JSON.parse(localStorage.getItem("userData"));
+  const { profileObj: currentUser } = JSON.parse(
+    localStorage.getItem("userData")
+  );
 
-  // console.log("current use is =", currentUser)
+  console.log("current use is =", currentUser);
   // console.log("current use email is =", currentUser.email)
   // console.log("current use id is =", currentUser._id)
-
-
-
 
   // const [friends, setFriends] = useState([]);
   // console.log("user friends =",friends);
@@ -35,6 +33,8 @@ export default function Rightbar() {
 
   const [users, setUsers] = useState([]);
 
+  const me = users.filter((user) => user.email === currentUser.email)[0];
+
   const getUsers = () => {
     axios
       .get("http://localhost:8000/authusers")
@@ -46,9 +46,9 @@ export default function Rightbar() {
     getUsers();
   }, []);
 
-  const otherUsers = users.filter(user => user.email!==currentUser.email);
-  const me = users.filter(user => user.email===currentUser.email)[0];
-  console.log(me);
+  const otherUsers = users.filter((user) => user.email !== currentUser.email);
+
+  console.log("my data =", me);
 
   return (
     <div className="rightbar">
@@ -65,7 +65,9 @@ export default function Rightbar() {
         <h4 className="rightbarTitle">Suggestions</h4>
         <ul className="sidebarFriendList">
           {otherUsers.map((u) => {
-            return <CloseFriend key={u.id} user={u} me = {me} />;
+            return (
+              <CloseFriend key={u.id} user={u} me={me}/>
+            );
           })}
         </ul>
         <hr />
