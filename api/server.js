@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const authusers = require("./routes/authUser");
 const userData = require('./routes/userData');
+const http = require('http').createServer(app); 
+// const socketIO = require('socket.io');
 
 const postUpload = require("./routes/postUpload");
 
@@ -61,6 +63,25 @@ app.use(
 const UserAuthModel = require("./models/userAuthModel");
 const PostModel = require("./models/postUploadModel");
 
-app.listen(port, () => {
+http.listen(port, () => {
   console.log("server listen...");
 });
+
+const io = require('socket.io')(http, {
+  cors: {
+    origins: ['http://localhost:3000/']
+  }
+});
+
+io.on('connection',(socket)=>{
+  console.log('a user connected');
+
+  socket.on('disconnect',()=>{
+    console.log('user disconnected');
+    
+  })
+
+  socket.on('my message',(msg)=>{
+    console.log('message: '+msg);
+  })
+})

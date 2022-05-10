@@ -8,7 +8,7 @@ function Share() {
   const [file, setFile] = useState("");
 
   const userData = JSON.parse(localStorage.getItem("userData"));
-  console.log(userData);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

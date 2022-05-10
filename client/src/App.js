@@ -6,6 +6,7 @@ import PrivateRoute from "./privateRoutes/PrivateRoute";
 import LoginPrivateRoute from "./privateRoutes/LoginPrivateRoute";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+
 export default function App() {
   return (
     <Router>
@@ -17,11 +18,12 @@ export default function App() {
           <Route exact element={<PrivateRoute />}>
             <Route exact path="/feeds" element={<Home />} />
              <Route exact path ="/feeds/myprofile/:name" element={<MyProfile />} />
+            
           </Route>
 
           <Route exact path="/feeds/userprofile/:name" element={<Profile />} />
           
-          
+        
         </Routes>
       </div>
     </Router>

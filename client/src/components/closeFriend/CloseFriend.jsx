@@ -1,4 +1,8 @@
 import React, { useState, useContext } from "react";
+import { useEffect } from 'react'
+import {intiateSocketConnection} from '../../socketio.service'
+import { disconnectSocket } from '../../socketio.service'
+
 
 import {Link} from 'react-router-dom'
 // import axios from "axios";
@@ -11,17 +15,26 @@ import { Add, Remove } from "@material-ui/icons";
 // import { AuthContext } from "../../context/AuthContext";
 
 function CloseFriend({ user , me:currentUser}) {
+  console.log(`user is ${user.email}`);
+  console.log(`me is ${currentUser.name}`);
+  
+  useEffect(()=>{
+    intiateSocketConnection();
+    return () =>{
+      disconnectSocket();
+    }
+  },[])
+
   
 
-  console.log("current user is = ", currentUser);
-  // console.log("user hai ye=",user)
-  console.log("user id =", user._id)
-  // console.log("user email = ", user.email)
-  // console.log("current me  = ", me._id)
+  //console.log("current user is = ", currentUser);
+  
+  //console.log("user id =", user._id)
+  
   const [followed, setFollowed] = useState(
     currentUser.following?.length && currentUser.following.includes(user?.id)
   );
-  console.log("follower user is =",followed);
+  //console.log("follower user is =",followed);
 
   const handleClick = async () => {
     console.log(followed);

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function ProfileCard() {
 
   const user = JSON.parse(localStorage.getItem("userData"));
-  console.log(user);
+  // console.log(user);
   return (
     <div className="card">
       <div className="upper-container">
