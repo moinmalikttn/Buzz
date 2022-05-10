@@ -18,6 +18,7 @@ const port = process.env.PORT || 5000;
 const postComment = require('./routes/postComment');
 const likeDislike = require('./routes/likeDislike');
 const reportPost = require('./routes/reportPost');
+const friendRequest = require('./routes/friendRequest');
 
 // chat app router 
 
@@ -58,6 +59,7 @@ app.use("/messages", message);
 app.use("/postupload/comment", postComment);
 app.use("/postupload/likeDislike", likeDislike);
 app.use("/postupload/report", reportPost);
+app.use("/friendrequest",friendRequest);
 const fileUpload = require("express-fileupload");
 
 
@@ -85,15 +87,27 @@ const io = require('socket.io')(http, {
   }
 });
 
+
+
+
 io.on('connection',(socket)=>{
   console.log('a user connected');
-
+  
+  socket.on('join',(data)=>{
+    
+    socket.join(data.email);
+    io.in(data.email).emit('user-joined','you are connected');
+  })
+  
+  socket.on('sentRequest',(data)=>{
+    //console.log(`reciever email is ${data.recieverEmail}`);
+    io.in("naveen@tothenew.com").emit('recieveRequest',data);
+  })
+  
   socket.on('disconnect',()=>{
     console.log('user disconnected');
     
   })
 
-  socket.on('my message',(msg)=>{
-    console.log('message: '+msg);
-  })
+  
 })

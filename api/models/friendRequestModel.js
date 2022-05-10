@@ -5,16 +5,10 @@ const friendsSchema = new mongoose.Schema({
         type:String
     },
     sentRequest:[{
-        Email:{
-            type:String,
-            default: ''
-        }
+        Email:String
     }],
     request:[{
-        Email:{
-            type:String,
-            default: ''
-        }
+        Email:String
     }],
     
     
