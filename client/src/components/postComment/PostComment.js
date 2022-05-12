@@ -11,7 +11,7 @@ const PostComment = ({post,callBack,flag}) => {
     
     callBack(readComment.length);
     
-    console.log(readComment.length);
+    // console.log(readComment.length);
     let FetchComments = async()=>{
       axios.get(`http://localhost:8000/postupload/comment/${post._id}`)
       .then((res)=>{

@@ -8,7 +8,7 @@ import { MdFileUpload } from "react-icons/md";
 
 
 const Mineprofile = ({userName}) => {
-    console.log(userName);
+    // console.log(userName);
    
     let [Name,setName] = useState("");
     let [Image,setImage] = useState("");
@@ -44,10 +44,10 @@ const Mineprofile = ({userName}) => {
     let arr=Name.split(' ');
     let firstName = arr[0];
     let lastName = arr[1];
-     console.log(typeof(firstName));
+    //  console.log(typeof(firstName));
 
-    console.log(firstName);
-    console.log(lastName);
+    // console.log(firstName);
+    // console.log(lastName);
     const name=Name;
     const image=Image;
     const info='Sarah Wood is co-founder and COO of video ad tec company,';

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {io} from 'socket.io-client';
 
 let socket;
@@ -7,7 +8,7 @@ export const intiateSocketConnection = (email)=>{
     socket.emit('join',{email:email});
     console.log(`Connecting socket...`);
     socket.on('user-joined',(msg)=>{
-        alert(msg);
+        console.log(msg);
     })
     
     
@@ -21,6 +22,15 @@ export const Listen = ()=>{
     console.log('socket user is listening for server');
     socket.on('recieveRequest',(data)=>{
         alert(`${data.Name} has sent you friendRequest`);
+        axios.post(`http://localhost:8000/friendrequest/${data.recieverId}/recieve`,{
+            Email:data.senderEmail
+        })
+        .then((value)=>{
+            console.log(value);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
     })
     
 }

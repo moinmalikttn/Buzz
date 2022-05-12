@@ -12,7 +12,7 @@ export default function Rightbar() {
     localStorage.getItem("userData")
   );
 
-  console.log("current use is =", currentUser);
+  // console.log("current use is =", currentUser);
   // console.log("current use email is =", currentUser.email)
   // console.log("current use id is =", currentUser._id)
 
@@ -48,7 +48,7 @@ export default function Rightbar() {
 
   const otherUsers = users.filter((user) => user.email !== currentUser.email);
 
-  console.log("my data =", me);
+  // console.log("my data =", me);
 
   return (
     <div className="rightbar">

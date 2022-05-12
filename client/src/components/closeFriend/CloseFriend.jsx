@@ -12,13 +12,13 @@ import { Add, Remove } from "@material-ui/icons";
 import { AuthContext } from "../../context/AuthContext";
 import { sendRequest } from "../../socketio.service";
 
-console.log("auth context =", AuthContext);
+// console.log("auth context =", AuthContext);
 
 // import { AuthContext } from "../../context/AuthContext";
 
 function CloseFriend({ user , me:currentUser}) {
-  console.log(`user is ${user.email}`);
-  console.log(`me is ${currentUser.name}`);
+  // console.log(`user is ${user.email}`);
+  // console.log(`me is ${currentUser.name}`);
   
 
   //console.log("current user is = ", currentUser);
@@ -26,13 +26,13 @@ function CloseFriend({ user , me:currentUser}) {
   //console.log("user id =", user._id)
   
   let callMe = async()=>{
-    console.log('i am in call me')
+    // console.log('i am in call me')
     if(currentUser.followings?.length &&
       currentUser.followings.filter((corr) => corr === user.id))setFollowed(1);
     else{
         axios.get(`http://localhost:8000/friendrequest/${currentUser._id}/${user.email}`)
         .then((value)=>{
-          console.log(value.data);
+          // console.log(value.data);
           if(value.data)setFollowed(-1);
           else setFollowed(0);
         })
@@ -43,10 +43,10 @@ function CloseFriend({ user , me:currentUser}) {
     }
   }
  const [followed, setFollowed] = useState(callMe);
-  console.log("follower user is =",followed);
+  // console.log("follower user is =",followed);
 
    const handleClick = async () => {
-    console.log(followed);
+    // console.log(followed);
     try {
       if (followed===1) {
         await axios.put(`http://localhost:8000/users/${user._id}/unfollow`, {
@@ -54,10 +54,10 @@ function CloseFriend({ user , me:currentUser}) {
         });
         // dispatch({ type: "UNFOLLOW", payload: user._id });
       } else if(followed ===0){
-        await axios.post(`http://localhost:8000/friendrequest/${currentUser._id}`,{
+        await axios.post(`http://localhost:8000/friendrequest/${currentUser._id}/sent`,{
           Email:user.email
         })
-        sendRequest({Name:currentUser.name,senderEmail:currentUser.email,recieverEmail:user.email});
+        sendRequest({Name:currentUser.name,senderEmail:currentUser.email,recieverEmail:user.email,recieverId:user._id});
         /*await axios.put(`http://localhost:8000/users/${user._id}/follow`, {
           userId: currentUser._id,
         });*/

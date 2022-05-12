@@ -36,7 +36,7 @@ function Share() {
       .catch((err) => {
         console.log(err);
       });
-    console.log(file);
+    // console.log(file);
     setInput("");
     setFile("");
   };

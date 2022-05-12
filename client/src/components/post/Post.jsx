@@ -81,7 +81,7 @@ function Post({post}) {
         }
       ]
     })
-    console.log('i reported this post');
+    // console.log('i reported this post');
 
     setColor('red');
   }
