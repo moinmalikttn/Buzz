@@ -54,10 +54,10 @@ function CloseFriend({ user , me:currentUser}) {
         });
         // dispatch({ type: "UNFOLLOW", payload: user._id });
       } else if(followed ===0){
-        await axios.post(`http://localhost:8000/friendrequest/${currentUser._id}`,{
+        await axios.post(`http://localhost:8000/friendrequest/${currentUser._id}/sent`,{
           Email:user.email
         })
-        sendRequest({Name:currentUser.name,senderEmail:currentUser.email,recieverEmail:user.email});
+        sendRequest({Name:currentUser.name,senderEmail:currentUser.email,recieverEmail:user.email,recieverId:user._id});
         /*await axios.put(`http://localhost:8000/users/${user._id}/follow`, {
           userId: currentUser._id,
         });*/

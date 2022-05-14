@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Search } from "@material-ui/icons";
 import axios from "axios";
@@ -46,6 +46,66 @@ function Topbar() {
         });
     }
   };
+
+   //search the user by name,email and friendList
+   let [id,setId] = useState('');
+   let [friendList,setFriendlist] = useState([]);
+   let [names,setNames] = useState([]);
+   let [emailName,setemailName] = useState([]);
+   console.log(friendList);
+   console.log(id);  
+   console.log(names);
+ 
+ 
+   let searchUser = ()=>{
+      axios.get(`http://localhost:8000/authusers/${user.profileObj.name}`)
+     .then((value)=>{
+       
+       setId(value.data[0]._id);
+     })
+     .catch((err)=>{
+       console.log(err);
+     })
+   }
+   
+   let searchUserbyEmail = (list) =>{
+     list.map((user)=>{
+       console.log(user);
+       return (
+       axios.get(`http://localhost:8000/authusers/${user.Email}/Email`)
+       .then((value)=>{
+         // console.log(value);
+         
+         setNames((values)=>[...values,value.data[0].name]);
+       })
+       .catch((err)=>{
+       console.log(err);
+       }));
+     })
+   }
+   
+   let getFriendList = ()=>{
+     axios.get(`http://localhost:8000/friendrequest/${id}`)
+     .then((value)=>{
+       
+       setFriendlist(value.data.request);
+     })
+     .catch((err)=>{
+       console.log(err);
+     })
+   }
+   searchUser();
+   useEffect(()=>{
+     
+     getFriendList();
+   },[id]);
+   useEffect(()=>{
+     searchUserbyEmail(friendList);
+   },[friendList]);
+   //Request handling
+   // let reqAccepted = (value)=>{
+   // }
+ 
 
   return (
     <header className="topbarContainer">
@@ -121,9 +181,23 @@ function Topbar() {
           </li>
 
           <li>
-            <button className="tooltip" data-tooltip="Profile" id="btn_profile">
+          <div className="dropdown">
+            <button className="tooltip dropbtn" data-tooltip="Profile" id="btn_profile">
               <i className="fas fa-user-cog" />
             </button>
+            <div className="dropdown-content">
+              {
+                names.map((value)=>{
+
+                  return (<div className="FriendList">
+                    <p>{value}</p>
+                    <button type="submit" className="cancelBtn">Cancel</button>
+                    <button type="submit" className="acceptBtn">Accept</button>
+                  </div>);
+                })
+              }
+            </div>
+            </div>
           </li>
           <li>
             <button

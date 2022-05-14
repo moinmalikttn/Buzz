@@ -54,6 +54,13 @@ router.get('/:name',async(req,res)=>{
   
 })
 
+router.get('/:email/Email',async(req,res)=>{
+
+  const users = await UserAuthModel.find({email:req.params.email})
+  console.log('i am email',req.params.email);
+  res.status(200).send(users);
+})
+
 router.post('/:name',async(req,res)=>{
  
   const userPresent = await UserAuthModel.findOne({ 
