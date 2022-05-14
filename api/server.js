@@ -101,9 +101,12 @@ io.on('connection',(socket)=>{
   
   socket.on('sentRequest',(data)=>{
     //console.log(`reciever email is ${data.recieverEmail}`);
-    io.in("naveen@tothenew.com").emit('recieveRequest',data);
+    io.in(data.receiverEmail).emit('recieveRequest',data);
   })
   
+  socket.on('acceptedRequest',(data)=>{
+    io.in(data.receiverEmail).emit('acceptReqMsg',data);
+  })
   socket.on('disconnect',()=>{
     console.log('user disconnected');
     

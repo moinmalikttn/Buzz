@@ -61,5 +61,26 @@ router.post('/:id/recieve',async(req,res)=>{
     }
 })
 
+router.delete('/:id/request/:email',async(req,res)=>{
+    const data = await friendModel.updateOne({ $and:[{'id':req.params.id},{'request.Email':req.params.email}]},{
+        $pull:{ 
+            'request':{'Email':req.params.email}
+        }
+    });
+    res.status(200).send('Popped from Request');
+})
+
+router.delete('/:id/sentRequest/:email',async(req,res)=>{
+    console.log('i am in delete');
+    const data = await friendModel.updateOne({$and:[{'id':req.params.id},{'sentRequest.Email':req.params.email}]},{
+        $pull:{
+            'sentRequest':{'Email':req.params.email}
+        }
+    })
+    res.status(200).send('Popped from sentRequest');
+})
+
+
+
 
 module.exports = router;

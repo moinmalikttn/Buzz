@@ -17,8 +17,8 @@ import { sendRequest } from "../../socketio.service";
 // import { AuthContext } from "../../context/AuthContext";
 
 function CloseFriend({ user , me:currentUser}) {
-  // console.log(`user is ${user.email}`);
-  // console.log(`me is ${currentUser.name}`);
+  console.log(`user is ${user.email}`);
+  console.log(`me is ${currentUser._id}`);
   
 
   //console.log("current user is = ", currentUser);
@@ -43,7 +43,7 @@ function CloseFriend({ user , me:currentUser}) {
     }
   }
  const [followed, setFollowed] = useState(callMe);
-  // console.log("follower user is =",followed);
+   console.log("follower user is =",followed);
 
    const handleClick = async () => {
     // console.log(followed);

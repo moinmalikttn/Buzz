@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Search, VideoCallRounded } from "@material-ui/icons";
 import axios from "axios";
-
+import { acceptedRequest } from "../../socketio.service";
 import "./topbar.css";
 
 function Topbar() {
@@ -59,7 +59,7 @@ function Topbar() {
   console.log(id);  
   console.log(names);
   
-/*
+
   let searchUser = ()=>{
      axios.get(`http://localhost:8000/authusers/${user.profileObj.name}`)
     .then((value)=>{
@@ -79,7 +79,7 @@ function Topbar() {
       .then((value)=>{
         // console.log(value);
         
-        setNames((values)=>[...values,value.data[0].name]);
+        setNames((values)=>[...values,{name:value.data[0].name,email:value.data[0].email,id:value.data[0]._id}]);
       })
       .catch((err)=>{
       console.log(err);
@@ -105,15 +105,32 @@ function Topbar() {
   },[id]);
 
   useEffect(()=>{
+    setNames([]);
     searchUserbyEmail(friendList);
   },[friendList]);
 
   //Request handling
 
-  // let reqAccepted = (value)=>{
+  let reqAccepted = async(value)=>{
+      await axios.delete(`http://localhost:8000/friendrequest/${id}/request/${value.email}`)
 
-  // }
-*/
+      await axios.delete(`http://localhost:8000/friendrequest/${value.id}/sentRequest/${user.profileObj.email}`)
+
+      await axios.put(`http://localhost:8000/users/${id}/follow`, {
+          userId: value.id,
+        });
+
+        getFriendList();
+        acceptedRequest({recieverEmail:user.profileObj.email,senderName:value.name});
+  }
+
+  let cancelRequest = async(value)=>{
+    await axios.delete(`http://localhost:8000/friendrequest/${id}/request/${value.email}`)
+
+    await axios.delete(`http://localhost:8000/friendrequest/${value.id}/sentRequest/${user.profileObj.email}`)
+      
+  }
+
   return (
     <header className="topbarContainer">
       <nav>
@@ -197,9 +214,9 @@ function Topbar() {
                 names.map((value)=>{
                   
                   return (<div className="FriendList">
-                    <p>{value}</p>
-                    <button type="submit" className="cancelBtn">Cancel</button>
-                    <button type="submit" className="acceptBtn">Accept</button>
+                    <p>{value.name}</p>
+                    <button type="submit" className="cancelBtn" onClick={()=>cancelRequest(value)}>Cancel</button>
+                    <button type="submit" className="acceptBtn" onClick={()=>reqAccepted(value)}>Accept</button>
                   </div>);
                 })
               }
