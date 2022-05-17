@@ -18,7 +18,7 @@ import { sendRequest } from "../../socketio.service";
 
 function CloseFriend({ user , me:currentUser}) {
   console.log(`user is ${user._id}`);
-  console.log(`me is ${currentUser.followings}`);
+  console.log(`me is ${currentUser.name}`);
   
 
   //console.log("current user is = ", currentUser);
@@ -32,8 +32,10 @@ function CloseFriend({ user , me:currentUser}) {
   }
   let callMe = async()=>{
     // console.log('i am in call me')
+    try{
     if(currentUser.followings.length>0 &&checkIt())setFollowed(1);
     else{
+    
         axios.get(`http://localhost:8000/friendrequest/${currentUser._id}/${user.email}/isrequested`)
         .then((value)=>{
           console.log(value.data);
@@ -41,13 +43,19 @@ function CloseFriend({ user , me:currentUser}) {
           else setFollowed(0);
         })
         .catch((err)=>{
+          console.log(err);
           setFollowed(0);
-        })
-
+        })      
     }
+   }
+   catch(err){
+    console.log(err);
   }
- const [followed, setFollowed] = useState(0);
-  
+  }
+ let [followed, setFollowed] = useState(0);
+  useEffect(()=>{
+    callMe();
+  },[])
 
    console.log("follower user is =",followed);
 

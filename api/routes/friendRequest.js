@@ -12,9 +12,10 @@ router.get('/:id',async(req,res)=>{
 })
 
 router.get('/:id/:email/isrequested',async(req,res)=>{
+ 
     const data = await friendModel.find({ $and:[{'id':req.params.id},{'sentRequest.Email':req.params.email}]})
     if(data.length>0){
-        //  console.log('friendrequest data is',data);
+        console.log('friendrequest data is',data);
         res.send(true);
     }
     else res.send(false);
