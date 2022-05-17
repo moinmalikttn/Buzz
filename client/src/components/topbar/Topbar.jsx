@@ -72,6 +72,7 @@ function Topbar() {
   }
   
   let searchUserbyEmail = (list) =>{
+    if(list===undefined)return ;
     list.map((user)=>{
       console.log(user);
       return (
