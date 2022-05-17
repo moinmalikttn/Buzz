@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 
 
@@ -17,22 +17,26 @@ import { sendRequest } from "../../socketio.service";
 // import { AuthContext } from "../../context/AuthContext";
 
 function CloseFriend({ user , me:currentUser}) {
-  console.log(`user is ${user.email}`);
-  console.log(`me is ${currentUser._id}`);
+  console.log(`user is ${user._id}`);
+  console.log(`me is ${currentUser.followings}`);
   
 
   //console.log("current user is = ", currentUser);
   
   //console.log("user id =", user._id)
-  
+  let checkIt = ()=>{
+    for(let i=0;i<currentUser.followings.length;i++){
+      if(user._id===currentUser.followings[i])return true;
+    }
+    return false;
+  }
   let callMe = async()=>{
     // console.log('i am in call me')
-    if(currentUser.followings?.length &&
-      currentUser.followings.filter((corr) => corr === user.id))setFollowed(1);
+    if(currentUser.followings.length>0 &&checkIt())setFollowed(1);
     else{
-        axios.get(`http://localhost:8000/friendrequest/${currentUser._id}/${user.email}`)
+        axios.get(`http://localhost:8000/friendrequest/${currentUser._id}/${user.email}/isrequested`)
         .then((value)=>{
-          // console.log(value.data);
+          console.log(value.data);
           if(value.data)setFollowed(-1);
           else setFollowed(0);
         })
@@ -42,7 +46,9 @@ function CloseFriend({ user , me:currentUser}) {
 
     }
   }
- const [followed, setFollowed] = useState(callMe);
+ const [followed, setFollowed] = useState(0);
+  
+
    console.log("follower user is =",followed);
 
    const handleClick = async () => {
@@ -52,18 +58,20 @@ function CloseFriend({ user , me:currentUser}) {
         await axios.put(`http://localhost:8000/users/${user._id}/unfollow`, {
           userId: currentUser._id,
         });
+        setFollowed(0);
         // dispatch({ type: "UNFOLLOW", payload: user._id });
       } else if(followed ===0){
         await axios.post(`http://localhost:8000/friendrequest/${currentUser._id}/sent`,{
           Email:user.email
         })
         sendRequest({Name:currentUser.name,senderEmail:currentUser.email,recieverEmail:user.email,recieverId:user._id});
+        setFollowed(-1);
         /*await axios.put(`http://localhost:8000/users/${user._id}/follow`, {
           userId: currentUser._id,
         });*/
         // dispatch({ type: "FOLLOW", payload: user._id });
       }
-      setFollowed(!followed);
+  
     } catch (err) {
       console.log(err);
     }
