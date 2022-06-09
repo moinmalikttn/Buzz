@@ -105,7 +105,7 @@ io.on('connection',(socket)=>{
   })
   
   socket.on('acceptedRequest',(data)=>{
-    io.in(data.receiverEmail).emit('acceptReqMsg',data);
+    io.in(data.senderEmail).emit('acceptReqMsg',data);
   })
   socket.on('disconnect',()=>{
     console.log('user disconnected');
