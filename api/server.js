@@ -1,32 +1,29 @@
+const url = require("./config");
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
 const authusers = require("./routes/authUser");
-const userData = require('./routes/userData');
-const http = require('http').createServer(app); 
+const userData = require("./routes/userData");
+const path = require("path");
+const http = require("http").createServer(app);
 // const socketIO = require('socket.io');
 
 const postUpload = require("./routes/postUpload");
 
-
 const users = require("./routes/users");
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
+const postComment = require("./routes/postComment");
+const likeDislike = require("./routes/likeDislike");
+const reportPost = require("./routes/reportPost");
+const friendRequest = require("./routes/friendRequest");
 
-const postComment = require('./routes/postComment');
-const likeDislike = require('./routes/likeDislike');
-const reportPost = require('./routes/reportPost');
-const friendRequest = require('./routes/friendRequest');
+// chat app router
 
-// chat app router 
-
-const conversation = require('./routes/conversations');
-const message = require('./routes/messages');
-
-
-
+const conversation = require("./routes/conversations");
+const message = require("./routes/messages");
 
 const corsOptions = {
   origin: "*",
@@ -55,13 +52,11 @@ app.use("/users", users);
 app.use("/conversations", conversation);
 app.use("/messages", message);
 
-
 app.use("/postupload/comment", postComment);
 app.use("/postupload/likeDislike", likeDislike);
 app.use("/postupload/report", reportPost);
-app.use("/friendrequest",friendRequest);
+app.use("/friendrequest", friendRequest);
 const fileUpload = require("express-fileupload");
-
 
 //database connection
 require("./db/connection");
@@ -77,40 +72,43 @@ app.use(
 const UserAuthModel = require("./models/userAuthModel");
 const PostModel = require("./models/postUploadModel");
 
+app.use(express.static("client/build"));
+
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static("client/build"));
+}
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+
 http.listen(port, () => {
   console.log("server listen...");
 });
 
-const io = require('socket.io')(http, {
+const io = require("socket.io")(http, {
   cors: {
-    origins: ['http://localhost:3000/']
-  }
+    origins: [url],
+  },
 });
 
+io.on("connection", (socket) => {
+  console.log("a user connected");
 
-
-
-io.on('connection',(socket)=>{
-  console.log('a user connected');
-  
-  socket.on('join',(data)=>{
-    
+  socket.on("join", (data) => {
     socket.join(data.email);
-    io.in(data.email).emit('user-joined','you are connected');
-  })
-  
-  socket.on('sentRequest',(data)=>{
-    //console.log(`reciever email is ${data.recieverEmail}`);
-    io.in(data.receiverEmail).emit('recieveRequest',data);
-  })
-  
-  socket.on('acceptedRequest',(data)=>{
-    io.in(data.senderEmail).emit('acceptReqMsg',data);
-  })
-  socket.on('disconnect',()=>{
-    console.log('user disconnected');
-    
-  })
+    io.in(data.email).emit("user-joined", "you are connected");
+  });
 
-  
-})
+  socket.on("sentRequest", (data) => {
+    //console.log(`reciever email is ${data.recieverEmail}`);
+    io.in(data.receiverEmail).emit("recieveRequest", data);
+  });
+
+  socket.on("acceptedRequest", (data) => {
+    io.in(data.senderEmail).emit("acceptReqMsg", data);
+  });
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});

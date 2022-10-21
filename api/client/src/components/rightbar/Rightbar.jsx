@@ -1,3 +1,4 @@
+import apiUrl from "../../config";
 import React, { useState, useEffect } from "react";
 import "./rightbar.css";
 // import {Link} from "react-router-dom"
@@ -37,7 +38,7 @@ export default function Rightbar() {
 
   const getUsers = () => {
     axios
-      .get("http://localhost:8000/authusers")
+      .get(`${apiUrl}/authusers`)
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err));
   };
@@ -65,9 +66,7 @@ export default function Rightbar() {
         <h4 className="rightbarTitle">Suggestions</h4>
         <ul className="sidebarFriendList">
           {otherUsers.map((u) => {
-            return (
-              <CloseFriend key={u.id} user={u} me={me}/>
-            );
+            return <CloseFriend key={u.id} user={u} me={me} />;
           })}
         </ul>
         <hr />

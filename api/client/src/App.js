@@ -7,11 +7,7 @@ import LoginPrivateRoute from "./privateRoutes/LoginPrivateRoute";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Messenger from "./pages/messenger/Messenger";
 
-
 export default function App() {
-
-  
-
   return (
     <Router>
       <div className="App">
@@ -21,14 +17,15 @@ export default function App() {
           </Route>
           <Route exact element={<PrivateRoute />}>
             <Route exact path="/feeds" element={<Home />} />
-             <Route exact path ="/feeds/myprofile/:name" element={<MyProfile />} />
-            
+            <Route
+              exact
+              path="/feeds/myprofile/:name"
+              element={<MyProfile />}
+            />
           </Route>
 
           <Route exact path="/feeds/userprofile/:name" element={<Profile />} />
-          <Route exact path="/messenger" element = {<Messenger/>} />
-          
-        
+          <Route exact path="/messenger" element={<Messenger />} />
         </Routes>
       </div>
     </Router>

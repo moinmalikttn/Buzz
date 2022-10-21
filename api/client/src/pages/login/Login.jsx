@@ -1,3 +1,4 @@
+import apiUrl from "../../config";
 import React from "react";
 import "./login.css";
 import { GoogleLogin } from "react-google-login";
@@ -17,15 +18,16 @@ function Login() {
       name: response.profileObj.name,
     };
 
+    console.log(response);
+    console.log(apiUrl);
     if (response.profileObj.googleId) {
       axios
-        .post("http://localhost:8000/authusers", userInformation)
+        .post(`${apiUrl}/authusers`, userInformation)
         .then((data) => {
           setAuthenticate(true);
           localStorage.setItem("userToken", response.tokenId);
           localStorage.setItem("userData", JSON.stringify(response));
           navigate("feeds");
-          console.log(data);
         })
         .catch((err) => console.log(err));
     } else {
@@ -49,7 +51,7 @@ function Login() {
             <div className="auth_container">
               {/* <span className="auth_button">Sign in with Google</span> */}
               <GoogleLogin
-                clientId="181370592160-7e2ekrj6dr7v2v2tuc5unbdhs0capuh8.apps.googleusercontent.com"
+                clientId="563191575798-flvs1lbkc4cha45k63ndf31dp7lrfsad.apps.googleusercontent.com"
                 buttonText="Sign in with Google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}

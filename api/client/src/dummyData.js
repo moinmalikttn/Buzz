@@ -24,5 +24,4 @@ export const Users = [
     profilePicture: "/assets/person/5.jpg",
     name: "Thomas Holden",
   },
- 
 ];

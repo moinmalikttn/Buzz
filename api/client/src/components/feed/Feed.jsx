@@ -1,3 +1,4 @@
+import apiUrl from "../../config";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -8,7 +9,6 @@ import "./feed.css";
 // import {Link} from "react-router-dom"
 
 function Feed() {
-
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [posts, setPosts] = useState([]);
@@ -20,7 +20,7 @@ function Feed() {
 
   const fetchPosts = async () => {
     axios
-      .get(`http://localhost:8000/postupload?page=${pageNumber}`)
+      .get(`${apiUrl}/postupload?page=${pageNumber}`)
       .then((res) => {
         setPosts(res.data.postData);
         setNumberOfPages(res.data.totalPages);
@@ -41,7 +41,6 @@ function Feed() {
         {posts.map((post) => {
           return <Post key={post._id} post={post} />;
         })}
-
 
         {/* <button onClick={goToPrevious}>Previous</button>
 

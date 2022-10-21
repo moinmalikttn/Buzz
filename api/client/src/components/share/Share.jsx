@@ -1,3 +1,4 @@
+import apiUrl from "../../config";
 import "./share.css";
 import axios from "axios";
 import { PermMedia } from "@material-ui/icons";
@@ -8,7 +9,6 @@ function Share() {
   const [file, setFile] = useState("");
 
   const userData = JSON.parse(localStorage.getItem("userData"));
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ function Share() {
         "content-type": "multipart/form-data",
       },
     };
-    const url = "http://localhost:8000/postupload";
+    const url = `${apiUrl}/postupload`;
     axios
       .post(url, formData, config)
       .then((res) => {
