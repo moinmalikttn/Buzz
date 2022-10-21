@@ -5,6 +5,11 @@ import { Search, VideoCallRounded } from "@material-ui/icons";
 import axios from "axios";
 import { acceptedRequest } from "../../socketio.service";
 import "./topbar.css";
+import Triee from "../../features/trie";
+import {Insert,getValueName,getValueUrl} from '../../features/hashmap';
+
+
+
 
 function Topbar() {
 
@@ -31,23 +36,39 @@ function Topbar() {
 
   const [userName, setUserName] = useState("");
   const [buzzUsers, setBuzzUsers] = useState([]);
+  let [AllUsers,setAllusers] = useState([]);
+  let [nameOfUsers,setNameOfUser] = useState([]);
+
+  console.log(AllUsers);
   // console.log("my name is =", userName);
   console.log("buzz users are =", buzzUsers);
-
-  const handleSubmit = async (e) => {
-    if (e.keyCode === 13)
-    {
-      console.log("enter");
-      console.log(userName);
-      await axios
-        .get(`http://localhost:8000/authusers/${userName}`)
+  
+  let getAllUsers = async()=>{
+    await axios
+        .get(`http://localhost:8000/authusers`)
         .then((response) => {
-          setBuzzUsers(response.data);
+          console.log(response.data);
+          response.data.map((valueName)=>setAllusers((values)=>[...values,valueName]));
         })
         .catch((err) => {
           console.log(err);
         });
-    }
+  }
+  let InsertData=()=>{
+    AllUsers.map((value)=>Triee.insert(value.name.toLowerCase()));
+    AllUsers.map((value)=>Insert(value.name,value.imageUrl));
+  }
+  const handleSubmit = async (e) => {
+  
+       console.log(Triee.find(e.target.value.toLowerCase()));
+
+        setBuzzUsers([]);
+        
+      //  setUserName(e.target.value);
+        setNameOfUser(Triee.find(e.target.value.toLowerCase()));
+      
+        nameOfUsers.map((value)=>setBuzzUsers((values)=>[...values,value]));
+       
   };
 
   //search the user by name,email and friendList
@@ -100,10 +121,18 @@ function Topbar() {
   }
 
   searchUser();
+  
+  useEffect(()=>{
+    getAllUsers();
+  },[])
   useEffect(()=>{
     
     getFriendList();
   },[id]);
+
+  useEffect(()=>{
+    InsertData();
+  },[AllUsers]);
 
   useEffect(()=>{
     setNames([]);
@@ -155,8 +184,8 @@ function Topbar() {
                 className="searchInput"
                 type="text"
                 // value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                onKeyUp={(e) => handleSubmit(e)}
+                onChange={(e) => handleSubmit(e)}
+                //onKeyUp={(e) => handleSubmit(e)}
               />
             </div>
 
@@ -164,12 +193,12 @@ function Topbar() {
             {buzzUsers.map((user) => {
               return (
                 <li className="sidebarFriend">
-                  <img
-                    src={user.imageUrl}
+                   <img
+                    src={getValueUrl(user)}
                     alt=""
                     className="sidebarFriendImg"
-                  />
-                  <span className="sidebarFriendName">{user.name}</span>
+                  /> 
+                  <span className="sidebarFriendName">{getValueName(user)}</span>
                 </li>
               );
             })}
